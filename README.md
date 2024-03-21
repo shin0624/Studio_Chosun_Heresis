@@ -1,5 +1,5 @@
 # Inc-Capstone Design - Game Develop Project
-    24-1학기 캡스톤디자인 Unity 게임개발
+    조선대학교 2024-1학기 캡스톤디자인 Unity 게임개발
 
 # Contributors
     shin0624
