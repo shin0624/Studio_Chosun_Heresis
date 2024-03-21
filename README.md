@@ -3,6 +3,9 @@
 
 # Contributors
     shin0624
+    jinjin
+    maratangjoa
+    rkdsan1013
 
 
 
@@ -20,7 +23,7 @@
     Horror & Roguelike
 
 # View Style
-    2D
+    3D
 
 # Platform
     PC
