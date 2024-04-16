@@ -47,10 +47,11 @@
     Meeting(피드백, 개발 상황 점검) --> Research(개발 목표 달성 방법 탐색) --> Develop(Pair Programming) --> Commit 
 
 # UI 구상도
+![게임-내-UI-초안-001](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/7b74ea22-849a-4a97-8a43-c998c4ed5526)
 
 
 # 인 게임 이미지
 
 <Exterior>
-
+![Env_Exterior](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/020e5c60-d5fe-4d4b-9e62-9c5a87cf8170)
 <Interior>
