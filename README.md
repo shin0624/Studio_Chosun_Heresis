@@ -48,5 +48,5 @@
 -Interior-
 
 # Script Managing Frame
-
+![코드관리프레임](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/841dab83-4161-4427-b2d5-86a9e3e11d7d)
 
