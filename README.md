@@ -1,6 +1,9 @@
 # Inc-Capstone Design - Game Development Project
     조선대학교 2024-1학기 캡스톤디자인 Unity 게임개발
 
+# Start Scene
+![main](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/7899b98b-c3ab-4eac-b9b1-5b5e1d1ba96e)
+
 # Contributors
     shin0624
     jinjin
@@ -41,11 +44,15 @@
 
 # UI Plan View
 ![게임-내-UI-초안-001](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/7b74ea22-849a-4a97-8a43-c998c4ed5526)
+![이벤트1](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/9e222f29-6223-41a2-b720-83d83bc6b77a)
+![이벤트2](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/94656007-fb69-4d8b-b0f1-9746a33f2fcd)
 
 # InGame PreView
 -Exteriror-
 ![Env_Exterior](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/6ae592fa-f403-4699-b80f-62458c934b48)
 -Interior-
+![내부캡쳐1](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/652841c8-af69-4991-ad45-8e813a996bee)
+![내부캡쳐 2](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/c969e9e2-7280-4a45-9db1-37c2a8d1a58a)
 
 # Script Managing Frame
 ![코드관리프레임](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/841dab83-4161-4427-b2d5-86a9e3e11d7d)
