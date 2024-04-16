@@ -51,7 +51,11 @@
 
 
 # 인 게임 이미지
+-Exteriror-
+![Env_Exterior](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/6ae592fa-f403-4699-b80f-62458c934b48)
 
-<Exterior>
-![Env_Exterior](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/020e5c60-d5fe-4d4b-9e62-9c5a87cf8170)
-<Interior>
+    
+-Interior-
+
+# 코드 관리 프레임
+
