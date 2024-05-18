@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     float smoothXRotation;
     float smoothYRotation;//카메라 회전 시 떨림 방지를 위한 입력 스무딩 적용.
-    public float rotationSmoothTIme = 0.1f;//입력 스무딩에 사용될 시간. Inspector에서 조정가능.
+    public float rotationSmoothTIme = 0.01f;//입력 스무딩에 사용될 시간. Inspector에서 조정가능.
 
     //24.05.06 점프 기능 추가
     public int JumpPower;//점프 높이 변수
@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     public float climbSpeed;
     private bool isOnLadder;
 
+    //24.05.18 손전등 오브젝트 추가-->카메라에 상속
+    [Header("Flash Light")]
+    public GameObject FlashLight;
 
 
 
@@ -45,6 +48,16 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;                       // 메인 카메라를 할당
 
         IsJumping = false;//점프 여부 판단-->맵 바닥의 태그를 Ground로 설정하여 Ground가 아닐 때는 점프 불가하도록(이중 점프 방지)
+   
+        if(FlashLight!=null)//hierarchy에 손전등이 있다면 카메라의 자식으로 설정
+        {
+            FlashLight.transform.SetParent(cam.transform);
+            FlashLight.transform.localPosition = Vector3.zero;//손전등 위치를 카메라에 맞춘다-->플레이어가 상하로 시선을 옮겨도 손전등이 따라올 수 있게
+            FlashLight.transform.localRotation = Quaternion.identity;//손전등의 회전을 초기화
+        }
+    
+    
+    
     }
 
     void Update()
@@ -90,10 +103,12 @@ public class PlayerController : MonoBehaviour
         xRotation -= smoothYRotation;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);  // 수직 회전 값을 -90도에서 90도 사이로 제한
 
-       
+
+        cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); // 카메라의 회전을 조절
         transform.rotation = Quaternion.Euler(0, yRotation, 0);             // 플레이어 캐릭터의 회전을 조절
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0); // 카메라의 회전을 조절
-        //추가 --> 지하 맵에 transform.rotation적용 시 카메라, 플레이어 무한 회전 버그 확인-->지역회전으로 변경
+
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);             // 플레이어 캐릭터의 회전을 조절
+        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
 
     void Jump()//점프 메서드 추가
