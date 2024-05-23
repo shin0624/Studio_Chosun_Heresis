@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         // 입력에 따라 이동 방향 벡터 계산
         Vector3 moveVec = transform.forward * v + transform.right * h;
 
+
         //Rigidbody를 이용하여 이동하게 하여 벽 통과를 방지.
         rb.MovePosition(rb.position + moveVec.normalized * moveSpeed * Time.fixedDeltaTime);
     }
