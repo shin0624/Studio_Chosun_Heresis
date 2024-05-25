@@ -49,6 +49,7 @@ public class RayCastEnemyController : MonoBehaviour
             UpdateWalking();
         }
 #endif
+        //anim.SetFloat("MoveSpeed", agent.speed);
         switch (state)
         {
             case Define.EnemyState.IDLE:
@@ -64,6 +65,8 @@ public class RayCastEnemyController : MonoBehaviour
                 // UpdateAttack();
                 // break;
         }
+
+
     }
 
     private void UpdateIdle()
@@ -72,6 +75,7 @@ public class RayCastEnemyController : MonoBehaviour
         agent.isStopped = true;
 
         float distance = Vector3.Distance(transform.position, target.transform.position);
+
         Debug.Log("Checking if can see player...");
         if (CanSeePlayer())//플레이어에게 Ray가 Hit했다면
         {
@@ -106,7 +110,7 @@ public class RayCastEnemyController : MonoBehaviour
                 Debug.Log("Walking Now...Target : Player");
 
                 float distance = Vector3.Distance(transform.position, target.transform.position);
-                if (distance <= 3)
+                if (distance <= 5)
                 {
                     state = Define.EnemyState.RUNNING;
                     anim.SetTrigger("RUNNING");
@@ -157,7 +161,7 @@ public class RayCastEnemyController : MonoBehaviour
             if (agent.isOnNavMesh)
             {
                 agent.isStopped = false;
-                agent.speed = 1.5f;//달리는 속도는 1.5f -->0에서 점점 빨라지게 하고싶음
+                agent.speed = 2.0f;//달리는 속도는 1.5f -->0에서 점점 빨라지게 하고싶음
                 agent.destination = target.transform.position;//에너미의 목적지를 플레이어로 설정
                 float distance = Vector3.Distance(transform.position, target.transform.position);
                 Debug.Log("Running Now...Target : Player");
@@ -206,20 +210,22 @@ public class RayCastEnemyController : MonoBehaviour
 
     private bool CanSeePlayer()//에너미의 시야에 플레이어가 들어왔는지 판단하기 위해 RayCast를 사용.
     {
-        Vector3 directionToPlayer = (target.position - transform.position).normalized;//에너미 포지션과 플레이어 포지션의 차 : 플레이어까지의 방향벡터
-        float distanceToPlayer = Vector3.Distance(transform.position, target.position);//에너미 ~ 플레이어 까지의 거리
+        Vector3 directionToPlayer = (target.position - (transform.position + Vector3.up * 1.0f)).normalized;//에너미 포지션과 플레이어 포지션의 차 : 플레이어까지의 방향벡터
+        //에너미 위치 + 방향벡터 조정을 통해 Ray 발사 방향이 상체가 되며 일직선으로 발사될 수 있도록 함
+        float distanceToPlayer = Vector3.Distance(transform.position + Vector3.up *1.0f, target.position);//에너미 ~ 플레이어 까지의 거리
 
         float maxViewAngle = 60.0f;//시야 각 제한 각도(60도)
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);//에너미의 forward방향과 플레이어 방향 간 각도 계산
         //에너미의 직선방향 벡터와 (플레이어 위치좌표값 - 에너미 위치좌표값)의 벡터 간 각도를 계산한다.
+
         if(angleToPlayer <=maxViewAngle)
         {
-            Vector3 rayOrigin = transform.position + Vector3.forward* 5.5f;//ray가 에너미의 머리 높이에서 발사되도록 설정
+            Vector3 rayOrigin = transform.position + Vector3.up* 1.0f;//ray가 에너미의 머리 높이에서 발사되도록 설정
 
-            Debug.DrawRay(agent.transform.position, directionToPlayer * 100.0f, Color.red, 5.0f);
+            Debug.DrawRay(rayOrigin, directionToPlayer * 10.0f, Color.red);
             //에너미와 플레이어 사이 각도가 에너미 시야 각 제한 각도 범위 내 이면
             RaycastHit hit;//레이캐스트 변수 생성 --> 에너미와 플레이어 사이의 장애물 유무 확인 가능
-            if(Physics.Raycast(rayOrigin, directionToPlayer, out hit, 10.0f ))
+            if(Physics.Raycast(rayOrigin, directionToPlayer, out hit, 10.0f ))//매개변수 : 레이캐스트 시작 방향, 뻗어가는 방향, out hit, 레이 길이
             {
                 if(hit.transform == target)//Ray가 플레이어에게 Hit되었다면 참을 반환
                 {
