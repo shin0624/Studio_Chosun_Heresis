@@ -1,5 +1,7 @@
 # Inc-Capstone Design - Game Development Project
     조선대학교 2024-1학기 캡스톤디자인 Unity 게임개발
+# Indistars 9th - Heresis Project
+    광주광역시 인디게임 개발지원 사업 인디스타즈 9기 [Studio Chosun]
 
 # Start Scene
 ![main](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/7899b98b-c3ab-4eac-b9b1-5b5e1d1ba96e)
