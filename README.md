@@ -115,9 +115,7 @@
 ![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e5aaa7a9-6c02-41da-b81f-9c64d3cf9ef0)
 
 # Play Preview
-![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)
-
-![에너미](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/f78013a9-79eb-4db8-ba22-5a3f8a66ec78)
+![에너미](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/f78013a9-79eb-4db8-ba22-5a3f8a66ec78)![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)
 
 # InGame PreView
 -Exteriror-
