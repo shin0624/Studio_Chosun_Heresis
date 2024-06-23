@@ -92,13 +92,13 @@
     Meeting(피드백, 개발 상황 점검) --> Research(개발 목표 달성 방법 탐색) --> Develop(Pair Programming) --> Commit 
 
 # 스크립트 목록(계속 업데이트 예정)
-    - 오브젝트 자동화 Auto_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Auto_Scripts)
-    - 다이얼로그 처리 Dialogue_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Dialogue_Scripts) Managers_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Managers_Scripts)
-    - 에너미 AI 제작 Enemy_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Enemy_Scripts)
-    - 인벤토리 및 픽업 시스템 InventoryScripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/InventoryScripts)
-    - 플레이어용 스크립트 Player_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Player_Scripts)
-    - 씬 이벤트 처리용 스크립트 Scene_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Scene_Scripts)
-    - UI 스크립트(from UI Toolkit)UI_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/UI_Scripts)
+    - 오브젝트 자동화 [Auto_Scripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Auto_Scripts)
+    - 다이얼로그 처리 [Dialogue_Scripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Dialogue_Scripts) Managers_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Managers_Scripts)
+    - 에너미 AI 제작 [Enemy_Scripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Enemy_Scripts)
+    - 인벤토리 및 픽업 시스템 [InventoryScripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/InventoryScripts)
+    - 플레이어용 스크립트 [Player_Scripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Player_Scripts)
+    - 씬 이벤트 처리용 스크립트 [Scene_Scripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Scene_Scripts)
+    - UI 스크립트(from UI Toolkit) [UI_Scripts](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/UI_Scripts)
 
 # UI Plan View
 ![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/ada5c11b-6fbf-47f6-862d-b0582469cb11)
