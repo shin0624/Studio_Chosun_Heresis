@@ -93,7 +93,8 @@
 
 # 스크립트 목록(계속 업데이트 예정)
     - [오브젝트 자동화](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Auto_Scripts)
-    - [다이얼로그 처리](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Dialogue_Scripts) Managers_Scripts(https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Managers_Scripts)
+    - [다이얼로그 처리](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Dialogue_Scripts)
+    - [다이얼로그 처리 매니저](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Managers_Scripts)
     - [에너미 AI 제작](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Enemy_Scripts)
     - [인벤토리 및 픽업 시스템](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/InventoryScripts)
     - [플레이어용 스크립트](https://github.com/shin0624/Studio_Chosun_Heresis/tree/main/Player_Scripts)
