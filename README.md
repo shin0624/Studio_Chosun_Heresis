@@ -13,12 +13,12 @@
     rkdsan1013
     Honangshi
     
-# Prototype DemoFile Download Link
-    https://drive.google.com/file/d/1c8cQ8do7fN7p96kGZfVGtK0iTpj5wpax/view?usp=drive_link
-# 산학캡스톤디자인 1 데모파일제작 결과 보고서 다운로드 링크
-    https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link
+# 프로토타입 다운로드 링크
+[https://drive.google.com/file/d/1c8cQ8do7fN7p96kGZfVGtK0iTpj5wpax/view?usp=drive_link](https://drive.google.com/file/d/1c8cQ8do7fN7p96kGZfVGtK0iTpj5wpax/view?usp=drive_link)
+# 산학캡스톤디자인 1 데모 제작 결과 보고서 다운로드 링크
+[https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link](https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link)
 # 플레이 영상 다운로드 링크
-    https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link
+[https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link](https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link)
 
 # About Game
     주인공은 젊은 방송인으로, 유튜브 촬영을 위해 유사종교의 집회 장소가 있다는 오래된 폐병원에 잠입한다.
@@ -87,10 +87,10 @@
     2. Level Design : Difficulty / I/O process(Keyboard, Mouse..) / Camera View / physical processing / Animation Blending               
     3. UI Design : Interface for User`s convenience / Start, End, Event Scene, Buttons
 
-# Development method
+# Development Method
 ![익프](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/15b4cd09-7629-4b59-9b01-11f995da804f)
 
-# Development procedure
+# Development Procedure
 ![dangye](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/46e0868c-023d-4ccc-90ef-ddc3a7a8f60c)
 
 # 스크립트 목록(계속 업데이트 예정)
