@@ -110,7 +110,7 @@
 
 
 # UI Plan View
-![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/ada5c11b-6fbf-47f6-862d-b0582469cb11)
+![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e5aaa7a9-6c02-41da-b81f-9c64d3cf9ef0)
 
 # Play Preview
 ![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)
