@@ -93,12 +93,19 @@
 
 # 스크립트 목록(계속 업데이트 예정)
 [오브젝트 자동화](./Auto_Scripts)
+
 [다이얼로그 처리](./Dialogue_Scripts)
+
 [다이얼로그 처리 매니저](./Managers_Scripts)
+
 [에너미 AI 제작](./Enemy_Scripts)
+
 [인벤토리 및 픽업 시스템](./InventoryScripts)
+
 [플레이어용 스크립트](./Player_Scripts)
+
 [씬 이벤트 처리용 스크립트](./Scene_Scripts)
+
 [UI 스크립트(from UI Toolkit)](./UI_Scripts)
 
 
