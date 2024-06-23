@@ -88,8 +88,10 @@
     3. UI Design : Interface for User`s convenience / Start, End, Event Scene, Buttons
 
 # Development method
-    Agile Methodology의 대표적 방법인 eXtreme Programming을 기반으로 반복적인 주기를 설정.
-    Meeting(피드백, 개발 상황 점검) --> Research(개발 목표 달성 방법 탐색) --> Develop(Pair Programming) --> Commit 
+![익프](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/15b4cd09-7629-4b59-9b01-11f995da804f)
+
+# Development procedure
+![dangye](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/46e0868c-023d-4ccc-90ef-ddc3a7a8f60c)
 
 # 스크립트 목록(계속 업데이트 예정)
 [오브젝트 자동화](./Auto_Scripts)
