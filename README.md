@@ -114,6 +114,7 @@
 
 # Play Preview
 ![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)
+
 ![에너미](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/f78013a9-79eb-4db8-ba22-5a3f8a66ec78)
 
 # InGame PreView
@@ -122,6 +123,7 @@
 -Interior-
 ![내부캡쳐1](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/652841c8-af69-4991-ad45-8e813a996bee)
 ![내부캡쳐 2](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/c969e9e2-7280-4a45-9db1-37c2a8d1a58a)
+-InGame-
 ![preview01](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/0a7f6c07-2d6e-4fa9-9d80-570428fccf5f)
 ![preview02](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e6463284-9843-4fab-9591-cd4fd650144a)
 
