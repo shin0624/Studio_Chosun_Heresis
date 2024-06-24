@@ -4,7 +4,7 @@
     광주광역시 인디게임 개발지원 사업 인디스타즈 9기 [Studio Chosun]
 
 # Start Scene
-[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/tikQ6RgiCFA)
+![Start](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/26a730a9-2f85-4500-b394-b5bbeec10744)
 
 # Contributors
     shin0624
@@ -21,9 +21,7 @@
 [https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link](https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link)
 
 # 플레이 영상
-<iframe width="640" height="360" src="https://youtu.be/tikQ6RgiCFA" frameborder="0" gesture="media" allowfullscreen="">
-    
-</iframe>
+[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/tikQ6RgiCFA)
 
 # About Game
     주인공은 젊은 방송인으로, 유튜브 촬영을 위해 유사종교의 집회 장소가 있다는 오래된 폐병원에 잠입한다.
