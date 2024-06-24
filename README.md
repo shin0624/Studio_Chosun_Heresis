@@ -4,7 +4,7 @@
     광주광역시 인디게임 개발지원 사업 인디스타즈 9기 [Studio Chosun]
 
 # Start Scene
-![main](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/7899b98b-c3ab-4eac-b9b1-5b5e1d1ba96e)
+[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/tikQ6RgiCFA)
 
 # Contributors
     shin0624
