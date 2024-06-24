@@ -20,6 +20,9 @@
 # 플레이 영상 다운로드 링크
 [https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link](https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link)
 
+# 플레이 영상
+<iframe width="640" height="360" src="https://youtu.be/tikQ6RgiCFA" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+
 # About Game
     주인공은 젊은 방송인으로, 유튜브 촬영을 위해 유사종교의 집회 장소가 있다는 오래된 폐병원에 잠입한다.
     인기척을 쫓아 병원 내부를 탐색하던 중 습격을 받고 광신도들의 제물로 쓰이게 될 상황에 놓인다.
