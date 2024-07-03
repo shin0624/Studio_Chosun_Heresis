@@ -14,7 +14,7 @@
     Honangshi
     
 # 프로토타입 다운로드 링크
-[https://drive.google.com/file/d/1c8cQ8do7fN7p96kGZfVGtK0iTpj5wpax/view?usp=drive_link](https://drive.google.com/file/d/1c8cQ8do7fN7p96kGZfVGtK0iTpj5wpax/view?usp=drive_link)
+[https://drive.google.com/file/d/1i492orQWV-l24a5vJzaTMkWGqnsgNlha/view?usp=drive_link](https://drive.google.com/file/d/1i492orQWV-l24a5vJzaTMkWGqnsgNlha/view?usp=drive_link)
 # 산학캡스톤디자인 1 데모 제작 결과 보고서 다운로드 링크
 [https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link](https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link)
 # 플레이 영상 다운로드 링크
