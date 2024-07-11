@@ -21,7 +21,7 @@
 [https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link](https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link)
 
 # 플레이 영상
-[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/tikQ6RgiCFA)
+[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/pLb88d7mndE)
 
 # About Game
     주인공은 젊은 방송인으로, 유튜브 촬영을 위해 유사종교의 집회 장소가 있다는 오래된 폐병원에 잠입한다.
