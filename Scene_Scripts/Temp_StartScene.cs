@@ -81,8 +81,6 @@ public class Temp_StartScene : MonoBehaviour
         root.style.display = DisplayStyle.None; // 스타트 버튼 클릭 시 ui 비활성화.
         vdo.Prepare();//비디오 준비 시작
         vdo.prepareCompleted += OnVideoPrepared;//비디오 준비 완료 이벤트에 핸들러 추가
-        
-     
     }
     
     private void OnVideoPrepared(VideoPlayer vdo)//비디오가 준비되면 비디오, 오디오 재생

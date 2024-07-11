@@ -41,6 +41,7 @@ public class Teleport_from2f_toUnderground : MonoBehaviour
                         playerInRange= false;//중복 재생 방지.            
                     }
             }
+           
             else
             {
                     holdTime = 0f;//플레이어가 범위에서 벗어나면 다시 초기화
