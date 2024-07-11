@@ -14,6 +14,7 @@ public class LastTimelineController : MonoBehaviour
     public VideoPlayer videoplayer; // 애니메이션 재생용 변수 선언
     private bool playerInRange = false;
 
+
     void Start()
     {
         if (videoplayer != null)
@@ -24,12 +25,12 @@ public class LastTimelineController : MonoBehaviour
 
     void Update()
     {
-        if(playerInRange)
+        if (playerInRange)
         {
             PlayVideo();
             Debug.Log("LastAnimation Start!");
             playerInRange = false;//중복 재생 방지.  
-        }     
+        }
     }
 
     private void OnTriggerEnter(Collider other)

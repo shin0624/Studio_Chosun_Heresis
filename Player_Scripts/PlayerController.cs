@@ -4,8 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 //using UnityEngine.UIElements;
 
+// 플레이어를 관리하는 플레이어 컨트롤러 스크립트. 원활한 개발을 위해 싱글톤 패턴으로 수정
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController PlayerInstance;// 싱글톤 인스턴스
+
+
     Rigidbody rb;
 
     [Header("Rotate")]
@@ -37,6 +41,21 @@ public class PlayerController : MonoBehaviour
     //24.06.18 대쉬 추가
     [Header("Dash")]
     public float dashSpeed;
+
+    private void Awake()
+    {
+        if(PlayerInstance==null)
+        {
+            PlayerInstance = this;
+            DontDestroyOnLoad(gameObject);//씬이 전환되어도 플레이어가 파괴되지 않도록 조치
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;// 마우스 커서를 화면 안에서 고정
@@ -88,9 +107,6 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveVec.normalized * currentSpeed * Time.fixedDeltaTime);
        
     }
-
-   
-
 
     void Rotate()
     {
