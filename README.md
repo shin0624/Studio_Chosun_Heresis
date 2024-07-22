@@ -1,8 +1,16 @@
-# Inc-Capstone Design - Game Development Project
-    조선대학교 2024-1학기 캡스톤디자인 Unity 게임개발
-# Indistars 9th - Heresis Project
-    광주광역시 인디게임 개발지원 사업 인디스타즈 9기 [Studio Chosun]
+# Inc-Capstone Design - 게임개발팀
+    2024.03.02 ~ 2024.07.19
+    조선대학교 2024-1학기 산학캡스톤디자인 "Unity Engine을 사용한 PC기반 3D 호러게임" 
+    조선대학교 LINC 3.0 캡스톤디자인(종합설계) 경진대회 장려상 수상
 
+# 2024 광주권 LINC 3.0 CAPSTONE RISE STAR - 게임개발팀
+    2024.07.19 ~ 2024.08.23
+    광주권 5개 대학 캡스톤디자인 시제품형 결과물 고도화 경진대회
+    
+# Indistars 9th - Studio Chosun
+    2024.06.01 ~  2024.08(중간평가) ~ 2024.12
+    광주광역시 인디게임 개발지원 사업 인디스타즈 9기 [Studio Chosun]
+       
 # Start Scene
 ![Start](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/26a730a9-2f85-4500-b394-b5bbeec10744)
 
@@ -113,6 +121,9 @@
 
 [UI 스크립트(from UI Toolkit)](./UI_Scripts)
 
+[도어락 시스템](./DoorLock_Scripts)
+
+[상황별 목표 출력 시스템](./Object_Display_Scripts)
 
 # UI Plan View
 ![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e5aaa7a9-6c02-41da-b81f-9c64d3cf9ef0)
