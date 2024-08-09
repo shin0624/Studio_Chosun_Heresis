@@ -14,6 +14,9 @@
 # Start Scene
 ![Start](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/26a730a9-2f85-4500-b394-b5bbeec10744)
 
+# Intro CutScene
+[![Video Label](http://img.youtube.com/vi/Tb0xIN3BVlZ_3b53/0.jpg)](https://youtu.be/Tb0xIN3BVlZ_3b53)
+
 # Contributors
     shin0624
     jinjin
@@ -23,10 +26,9 @@
     
 # 프로토타입 다운로드 링크
 [https://drive.google.com/file/d/1i492orQWV-l24a5vJzaTMkWGqnsgNlha/view?usp=drive_link](https://drive.google.com/file/d/1i492orQWV-l24a5vJzaTMkWGqnsgNlha/view?usp=drive_link)
+
 # 산학캡스톤디자인 1 데모 제작 결과 보고서 다운로드 링크
 [https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link](https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link)
-# 플레이 영상 다운로드 링크
-[https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link](https://drive.google.com/file/d/1s1u6l6M-aDAbsrNbv7nbgxCmGgwzhJkU/view?usp=drive_link)
 
 # 플레이 영상
 [![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/pLb88d7mndE)
