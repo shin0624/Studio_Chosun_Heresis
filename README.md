@@ -1,21 +1,25 @@
-# Inc-Capstone Design - 게임개발팀
-    2024.03.02 ~ 2024.07.19
-    조선대학교 2024-1학기 산학캡스톤디자인 "Unity Engine을 사용한 PC기반 3D 호러게임" 
-    조선대학교 LINC 3.0 캡스톤디자인(종합설계) 경진대회 장려상 수상
+# HERESIS
 
-# 2024 광주권 LINC 3.0 CAPSTONE RISE STAR - 게임개발팀
-    2024.07.19 ~ 2024.08.23
-    광주권 5개 대학 캡스톤디자인 시제품형 결과물 고도화 경진대회
-    
-# Indistars 9th - Studio Chosun
-    2024.06.01 ~  2024.08(중간평가) ~ 2024.12
-    광주광역시 인디게임 개발지원 사업 인디스타즈 9기 [Studio Chosun]
-       
-# Start Scene
+# 메인 화면
 ![Start](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/26a730a9-2f85-4500-b394-b5bbeec10744)
 
-# Intro CutScene
+# 인트로 영상
 [![Heresis2](https://img.youtube.com/vi/84w2DgmfVk4/0.jpg)](https://youtu.be/84w2DgmfVk4)
+
+# 플레이 영상
+[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/pLb88d7mndE)
+
+# 팀 약력
+## 활동 "프로젝트명" 팀명 (수행기간) ##
+- 조선대학교 2024-1학기 산학캡스톤디자인 "Unity Engine을 사용한 PC기반 3D 호러게임", 게임개발팀 (2024.03 ~ 2024. 07)
+    
+- 광주광역시 인디게임 개발지원 사업 인디스타즈 9기 "HERESIS", Studio Chosun (2024.06 ~ )
+
+- 2024 광주권 LINC 3.0 캡스톤 RISE STAR "Unity Engine을 사용한 PC기반 3D 호러게임", 게임개발팀 (2024.07 ~ 2024.08)
+
+#  수상
+- 조선대학교 캡스톤디자인(종합설계)경진대회 장려상 (교내)
+- 2024 광주권 LINC 3.0 캡스톤 RISE STAR 수상 예정 (지역)
 
 # Contributors
     shin0624
@@ -23,90 +27,27 @@
     maratangjoa
     rkdsan1013
     Honangshi
-    
-# 프로토타입 다운로드 링크
-[https://drive.google.com/file/d/1i492orQWV-l24a5vJzaTMkWGqnsgNlha/view?usp=drive_link](https://drive.google.com/file/d/1i492orQWV-l24a5vJzaTMkWGqnsgNlha/view?usp=drive_link)
 
-# 산학캡스톤디자인 1 데모 제작 결과 보고서 다운로드 링크
-[https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link](https://drive.google.com/file/d/1yVeJIcMww1tqwqBdI9xYdbLBp4WBJrDc/view?usp=drive_link)
+# 개요
+    OUTLAST, Resident Evil, Silint Hill 등 공포 장르 스테디셀러는 모두 해외 배경의 게임입니다.
+    한국을 배경으로 한 공포게임이라면 한국 유저의 몰입도를 더욱 높일 수 있다는 의견을 시작으로, HERESIS가 기획되었습니다.
 
-# 플레이 영상
-[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/pLb88d7mndE)
+# 게임 소개
+![게임소개](https://github.com/user-attachments/assets/987c9902-97dc-405e-b0ce-fb536283983f)
 
-# About Game
-    주인공은 젊은 방송인으로, 유튜브 촬영을 위해 유사종교의 집회 장소가 있다는 오래된 폐병원에 잠입한다.
-    인기척을 쫓아 병원 내부를 탐색하던 중 습격을 받고 광신도들의 제물로 쓰이게 될 상황에 놓인다.
-    제한된 시야와 긴박한 배경음 속에서 탈출을 목표로 게임을 진행해야 한다.
-    
-# Intro
-    <인디스타즈>
-    YouTube 등의 비디오 플랫폼에서는 “Outlast”, “Resident Evil”, “Little Nightmares” 등의 공포, 탈출 콘텐츠가 꾸준히 인기이며, 탄탄한 고정 소비층이 존재합니다. 
-    한편, 저희는 한국을 배경으로 한 공포게임이 부재하다는 점에 착안하여 시장 공략 가능성을 인지했고, “Heresis”를 기획하게 되었습니다.
-    수요가 확실한 장르 위에 친숙한 요소를 반영함으로써 개발자로서의 역량을 표현하고, 이를 발판으로 삼아 경쟁력 있는 개발자로 발돋움하고자 합니다.
-    
-    <산학캡스톤디자인 1>
-    게임 산업은 컴퓨터 발전과 함께 주요 IT 산업 중 하나로 자리매김한 분야이며, 성별, 연령을 불문하고 많은 소비층이 존재한다. 
-    또한 스마트폰, PC, 콘솔기기, VR, AR 등 많은 플랫폼 기반의 수요가 존재하여 시장성과 미래성이 밝다. 
-    본 캡스톤 디자인 게임개발팀 인원들은 모두 게임 업계 진출을 희망하고 있으며, 금 학기 캡스톤디자인을 통해 
-    IT 개발자의 필수 요소인 협업을 경험하고 현업에서 쓰이는 프로세스를 답습한다.
-    본 프로젝트의 결과물은 팀원 개개인의 포트폴리오로 사용될 것이며, 교외 대외활동 참가 작품으로도 활용 된다.
+# 프로젝트 디테일
+1. 개발도구
++ Engine : Unity Engine
++ Language : C#
+2. 장르
++ 공포, 탈출, 미스터리
++ 3D, Single Play
+3. 개발 프로세스
++ [프로젝트 관리](폴더추가예정)
+4. 출시 준비 과정
++ [출시 준비 과정])(폴더추가예정)
 
-# Concept
- - Tools : Unity Engine
- - Langueage : C#
- - Genre : Horror, Escape, Mystery
- - View Style : 3D
- - Process : Pre-Production -> Production -> PostProduction
-
-# Milestone
-    <인디스타즈 9기>
-    May   
-            1. 맵 최적화
-            2. 이벤트 및 상호작용 기믹 설계
-            3. UI 설계
-            4. 캐릭터 애니메이션 작업
-    June   
-            1. 플레이 흐름 점검
-            2. 알파 테스트를 통한 피드백
-            3. 피드백 기반 프로토타입 전체 디버깅
-    July  
-            1. UX 설계
-            2. 세이브 포인트 구현
-            3. Easy Mode 밸런싱
-    August  
-            1. 시네머신, 타임라인을 이용한 컷신 제작
-            2. 플레이 흐름 개선방안, 추가 콘텐츠 기획, 그래픽 기획 등 업데이트 기획 작성
-            
-    September 
-            1. 기획서 기반 추가 콘텐츠 설계 제작
-            2. 로컬라이징을 고려한 영/일어 다이얼로그 번역
-              
-    October 
-            1. 기획서 기반 추가 콘텐츠 설계 제작
-            2. 베타테스트를 통한 피드백
-            3. 피드백 기반 프로토타입 전체 디버깅
-            
-    November  
-            1. 최종 빌드파일 완성
-            2. 패키징 후 유통망 배포
-            
-    <산학캡스톤디자인 1>
-    April - Week 5 [ 개념설계 발표 ]
-    May   - Week 9 [ 중간 보고서 제출 ]
-    June  - Week 15 [ 최종 보고서 제출 및 발표 ]
-
-# Part Distribution
-    1. Game Design : Genre / Contents / Scale / Platform / Art Resource / BackGround Resource
-    2. Level Design : Difficulty / I/O process(Keyboard, Mouse..) / Camera View / physical processing / Animation Blending               
-    3. UI Design : Interface for User`s convenience / Start, End, Event Scene, Buttons
-
-# Development Method
-![익프](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/15b4cd09-7629-4b59-9b01-11f995da804f)
-
-# Development Procedure
-![dangye](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/46e0868c-023d-4ccc-90ef-ddc3a7a8f60c)
-
-# 스크립트 목록(계속 업데이트 예정)
+# 스크립트 목록 (업데이트 진행 중)
 [오브젝트 자동화](./Auto_Scripts)
 
 [다이얼로그 처리](./Dialogue_Scripts)
@@ -127,25 +68,18 @@
 
 [상황별 목표 출력 시스템](./Object_Display_Scripts)
 
-# UI Plan View
+# UI 구성
 ![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e5aaa7a9-6c02-41da-b81f-9c64d3cf9ef0)
 
-# Play Preview
-![에너미](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/f78013a9-79eb-4db8-ba22-5a3f8a66ec78)![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)
+# 플레이 프리뷰
+![목표출력](https://github.com/user-attachments/assets/56d20cff-6076-4b5f-9a91-d4d61d270c7f)![에너미](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/f78013a9-79eb-4db8-ba22-5a3f8a66ec78)![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)![비번동영상](https://github.com/user-attachments/assets/dcbfc285-bde2-4cc5-bdd1-1ced9d70f2da)
 
-# InGame PreView
--Exteriror-
-![Env_Exterior](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/6ae592fa-f403-4699-b80f-62458c934b48)
--Interior-
-![내부캡쳐1](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/652841c8-af69-4991-ad45-8e813a996bee)
-![내부캡쳐 2](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/c969e9e2-7280-4a45-9db1-37c2a8d1a58a)
--InGame-
-![preview01](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/0a7f6c07-2d6e-4fa9-9d80-570428fccf5f)
-![preview02](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e6463284-9843-4fab-9591-cd4fd650144a)
+# 인게임 프리뷰
+## 개발 진행 중인 이미지가 포함됩니다. 지속적으로 업데이트 중입니다. ##
+![구조](https://github.com/user-attachments/assets/eac29cd3-d05d-4b96-8b84-06ea0b6b9203)
 
 # 조작키
 ![조작키](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/c0b34ac3-113a-4115-837c-f899ed82467d)
 
 # Script Managing Frame
 ![코드관리프레임](https://github.com/shin0624/Capstone_Design_01_GameDevelopment/assets/91828379/841dab83-4161-4427-b2d5-86a9e3e11d7d)
-
