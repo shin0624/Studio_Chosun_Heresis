@@ -9,7 +9,7 @@
 - Sound
     1. 공포, 스릴, 서늘함, 충격 등 플레이어의 심리를 자극하는 생생한 사운드 사용.
     2. 기본 배경음은 없애고, 상황에 따라 공포감을 고조시키는 사운드 재생
-<인게임 사운드 사용 예시 : 정신병동 이벤트>
+    3. <인게임 사운드 사용 예시 : 정신병동 이벤트>
         [![Watch the video](https://img.youtube.com/vi/J2VqZob2xNw/0.jpg)](https://youtu.be/J2VqZob2xNw)
 
 # 목표시장 현황
