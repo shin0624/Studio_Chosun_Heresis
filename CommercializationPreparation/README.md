@@ -4,12 +4,12 @@
 - Reality 
     1. 실제 한국 대형병원의 특징을 살린 그래픽을 사용하여 플레이어에게 현실감 제공
     2. 익숙한 배경에서 느끼는 공포와 스릴 -> 높은 게임성 체감 가능
-        <인게임 레벨 예시 : 지상 1,2층>
+    3. <인게임 레벨 예시 : 지상 1,2층>
         ![1층레벨진행도01](https://github.com/user-attachments/assets/be5eb12b-8462-4368-94e7-e71232c30162)![1층레벨진행도02](https://github.com/user-attachments/assets/a9955614-de04-4dd1-b581-953ccb93019e)
 - Sound
     1. 공포, 스릴, 서늘함, 충격 등 플레이어의 심리를 자극하는 생생한 사운드 사용.
     2. 기본 배경음은 없애고, 상황에 따라 공포감을 고조시키는 사운드 재생
-        <인게임 사운드 사용 예시 : 정신병동 이벤트>
+<인게임 사운드 사용 예시 : 정신병동 이벤트>
         [![Watch the video](https://img.youtube.com/vi/J2VqZob2xNw/0.jpg)](https://youtu.be/J2VqZob2xNw)
 
 # 목표시장 현황
