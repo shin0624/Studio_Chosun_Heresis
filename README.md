@@ -15,7 +15,7 @@
 ![Start](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/26a730a9-2f85-4500-b394-b5bbeec10744)
 
 # Intro CutScene
-[![Heresis2](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/hu0d41LoLTpdjJw4)
+[![Heresis2](https://img.youtube.com/vi/tikQ6RgiCFA/1.jpg)](https://youtu.be/84w2DgmfVk4)
 
 # Contributors
     shin0624
