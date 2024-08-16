@@ -69,7 +69,7 @@ public class GameMessageManager : MonoBehaviour
         }
     }
 
-    public void DisplayObjectives(string newObjectiveID, string objectiveID)
+    public void DisplayObjective(string newObjectiveID, string objectiveID)
     {
         // 새로운 목표 텍스트 설정
         if (objectiveDictionary.ContainsKey(newObjectiveID))
