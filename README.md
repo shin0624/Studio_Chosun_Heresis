@@ -2,7 +2,7 @@
     "HERESIS"는 "heresy"의 라틴어 형태로, "이단"을 의미. 주류 종교나 교리에서 벗어난 믿음이나 가르침을 가리킨다.
 
 # 메인 화면
-![Start](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/26a730a9-2f85-4500-b394-b5bbeec10744)
+![시작화면한글](https://github.com/user-attachments/assets/ceb68d85-c038-4757-8d91-7d316f8b709a)
 
 # 인트로 영상
 [![Heresis2](https://img.youtube.com/vi/84w2DgmfVk4/0.jpg)](https://youtu.be/84w2DgmfVk4)
@@ -20,7 +20,7 @@
 
 #  수상
 - 조선대학교 캡스톤디자인(종합설계)경진대회 장려상 (교내)
-- 2024 광주권 LINC 3.0 캡스톤 RISE STAR 수상 예정 (지역)
+- 2024 광주권 LINC 3.0 캡스톤 RISE STAR 우수상    (지역)
 
 # 팀원
 - 신범수(shin0624) : 팀장 / 팀 및 프로젝트 일정관리, 인게임 로직 코딩
@@ -38,11 +38,11 @@
 ## 주요 캐릭터 목록
 + 주인공 : 인터넷 방송인. 호기롭게 폐병원에 잠입했으나 공포와 어둠에 둘러싸여 상시 패닉상태. 일정 시간 간격으로 정신안정제를 획득해 복용하지 않으면 심장소리가 커지고 시야가 흐려져 기절하게 된다. "그것"을 위한 제물이 될 위험에 처한다.
 
-+ 광신도 : "그것"을 향해 기도를 올린다. 제물로 쓰일 주인공을 쫒는 앙상한 몰골.
++ 광신도 : 문 닫기 전 병원의 불치병 환자. 교주로부터 치료제라 불리는 마약성 약물을 반복 투약받아, 완치될 수 있다는 맹신에 빠져버렸다.
 
-+ 닥터 : 병원이 문을 닫기 전, 의료사고를 내고 도망치던 중 병원 지하를 발견. "그것"을 목격하고 변해버렸다.
++ 닥터 : 문 닫기 전 병원의 의사. 의료사고를 내고 도망치다 기이한 존재를 경험, 교주와 뜻을 같이하게 된다. 정기적으로 밖에서 제물을 구해온다.
 
-+ 교주 : 신도들의 우두머리. "그것"에 대해 알고있으며, 병원과도 깊은 관계가 있다.
++ 교주 : 폐병원 사이비종교의 교주. 원래 병원 원장이었으며, 기이한 존재를 경험한 뒤 종교를 만들고 환자들을 속여 신도로 만들었다.
 
 + "그것" : ??
 
@@ -91,6 +91,19 @@
 # 인게임 프리뷰
 ## 개발 진행 중인 이미지가 포함됩니다. 지속적으로 업데이트 중입니다. ##
 ![구조](https://github.com/user-attachments/assets/eac29cd3-d05d-4b96-8b84-06ea0b6b9203)
+
+![접수처](https://github.com/user-attachments/assets/a1912057-9226-4029-a906-2c33eacd3048)
+
+![기도실어둡게](https://github.com/user-attachments/assets/9f4077ce-43c9-4851-ba40-f66c0016b771)
+
+![upscale_240820_f904e1d3-491e-4baa-8d9e-f62b472f98ad_MiriCanvas](https://github.com/user-attachments/assets/916d7e39-d37b-41ec-ae54-5476768a9e7d)
+
+![공사현장](https://github.com/user-attachments/assets/06390b81-178f-41de-927e-028130b8ad86)
+
+![공사현장내부2](https://github.com/user-attachments/assets/798dac45-b9b4-44a5-aa80-a151dab1ebde)
+
+![포스트프로세싱](https://github.com/user-attachments/assets/d32eb75d-1da8-4795-abb6-c3ea151a9376)
+
 
 # 조작키
 ![조작키](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/c0b34ac3-113a-4115-837c-f899ed82467d)
