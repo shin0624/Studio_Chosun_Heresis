@@ -6,7 +6,11 @@
     2. 익숙한 배경에서 느끼는 공포와 스릴 -> 높은 게임성 체감 가능
 
 <인게임 레벨 예시 : 지상 1,2층>
-![1층레벨진행도01](https://github.com/user-attachments/assets/be5eb12b-8462-4368-94e7-e71232c30162)![1층레벨진행도02](https://github.com/user-attachments/assets/a9955614-de04-4dd1-b581-953ccb93019e)
+![1층어둡게](https://github.com/user-attachments/assets/2fd5f89a-7f50-4308-aa0f-52d3d9fc6f67)
+
+![2층어둡게](https://github.com/user-attachments/assets/51dda57f-e414-44e5-b56a-333df8066d5a)
+
+![진료실복도2](https://github.com/user-attachments/assets/19655155-0fbb-4b33-81c1-ec8ae58ee8b8)
 
 - Sound
     1. 공포, 스릴, 서늘함, 충격 등 플레이어의 심리를 자극하는 생생한 사운드 사용.
@@ -14,6 +18,9 @@
 
 <인게임 사운드 사용 예시 : 정신병동 이벤트>
 [![Watch the video](https://img.youtube.com/vi/J2VqZob2xNw/0.jpg)](https://youtu.be/J2VqZob2xNw)
+
+<인게임 사운드 사용 예시 : 닥터 조우 이벤트>
+[![Watch the video](https://img.youtube.com/vi/dJuhDsMSR2dzuRi-/0.jpg)](https://youtu.be/dJuhDsMSR2dzuRi-)
 
 # 목표시장 현황
 ## 글로벌 게임 시장 규모는 매년 확대되고 있으며, 인디게임 출시 수 또한 상승세를 보이고 있다.
