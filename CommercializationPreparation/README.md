@@ -20,7 +20,7 @@
 [![Watch the video](https://img.youtube.com/vi/J2VqZob2xNw/0.jpg)](https://youtu.be/J2VqZob2xNw)
 
 <인게임 사운드 사용 예시 : 닥터 조우 이벤트>
-[![Watch the video](https://img.youtube.com/vi/dJuhDsMSR2dzuRi-/0.jpg)](https://youtu.be/dJuhDsMSR2dzuRi-)
+[![Watch the video](https://img.youtube.com/vi/Pv3cahpwg9s/0.jpg)](https://youtu.be/Pv3cahpwg9s)
 
 # 목표시장 현황
 ## 글로벌 게임 시장 규모는 매년 확대되고 있으며, 인디게임 출시 수 또한 상승세를 보이고 있다.
