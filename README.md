@@ -8,7 +8,7 @@
 [![Heresis2](https://img.youtube.com/vi/84w2DgmfVk4/0.jpg)](https://youtu.be/84w2DgmfVk4)
 
 # 플레이 영상
-[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/VOlhTjXmrsCs0JQn)
+[![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/cxzYf7gvMjI)
 
 # 팀 약력
 ## 활동 "프로젝트명" 팀명 (수행기간) ##
