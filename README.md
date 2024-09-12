@@ -14,13 +14,17 @@
 ## 활동 "프로젝트명" 팀명 (수행기간) ##
 - 조선대학교 2024-1학기 산학캡스톤디자인 "Unity Engine을 사용한 PC기반 3D 호러게임", 게임개발팀 (2024.03 ~ 2024. 07)
     
-- 광주광역시 인디게임 개발지원 사업 인디스타즈 9기 "HERESIS", Studio Chosun (2024.06 ~ )
+- 광주광역시 인디게임 개발지원 사업 인디스타즈 9기 "HERESIS", Studio Chosun (2024.06 ~ 2024.09)
 
 - 2024 광주권 LINC 3.0 캡스톤 RISE STAR "Unity Engine을 사용한 PC기반 3D 호러게임", 게임개발팀 (2024.07 ~ 2024.08)
 
+- 2024 한국연구재단 주최 캡스톤 디자인 전국권 경진대회 "Unity Engine을 사용한 PC기반 3D 호러게임", 게임개발팀 (2024.09 ~ )
+
+- 조선대학교 2024-2학기 산학프로젝트 2 "Unity Engine을 사용한 3D 호러게임", 게임개발팀 (2024.09 ~ 2024.12)
+
 #  수상
-- 조선대학교 캡스톤디자인(종합설계)경진대회 장려상 (교내)
-- 2024 광주권 LINC 3.0 캡스톤 RISE STAR 우수상    (지역)
+- 조선대학교 캡스톤디자인(종합설계)경진대회 장려상     (교내)
+- 2024 광주권 LINC 3.0 캡스톤 RISE STAR 우수상      (지역)
 
 # 팀원
 - 신범수(shin0624) : 팀장 / 팀 및 프로젝트 일정관리, 인게임 로직 코딩
@@ -35,16 +39,9 @@
 
 # 게임 소개
 ![게임소개](https://github.com/user-attachments/assets/987c9902-97dc-405e-b0ce-fb536283983f)
-## 주요 캐릭터 목록
-+ 주인공 : 인터넷 방송인. 호기롭게 폐병원에 잠입했으나 공포와 어둠에 둘러싸여 상시 패닉상태. 일정 시간 간격으로 정신안정제를 획득해 복용하지 않으면 심장소리가 커지고 시야가 흐려져 기절하게 된다. "그것"을 위한 제물이 될 위험에 처한다.
 
-+ 광신도 : 문 닫기 전 병원의 불치병 환자. 교주로부터 치료제라 불리는 마약성 약물을 반복 투약받아, 완치될 수 있다는 맹신에 빠져버렸다.
-
-+ 닥터 : 문 닫기 전 병원의 의사. 의료사고를 내고 도망치다 기이한 존재를 경험, 교주와 뜻을 같이하게 된다. 정기적으로 밖에서 제물을 구해온다.
-
-+ 교주 : 폐병원 사이비종교의 교주. 원래 병원 원장이었으며, 기이한 존재를 경험한 뒤 종교를 만들고 환자들을 속여 신도로 만들었다.
-
-+ "그것" : ??
+# 주요 캐릭터 목록
+![캐릭터목록](https://github.com/user-attachments/assets/a75106ad-a599-48d0-8c63-5db197f70d85)
 
 # 프로젝트 디테일
 1. 개발도구
@@ -82,11 +79,16 @@
 
 [상황별 목표 출력 시스템](./Object_Display_Scripts)
 
-# UI 구성
-![all](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/e5aaa7a9-6c02-41da-b81f-9c64d3cf9ef0)
+## UI 구성
+![UI](https://github.com/user-attachments/assets/f382f7f9-b100-4802-a71f-175c86d81340)
+![UI2](https://github.com/user-attachments/assets/0a2ac014-7656-41cc-b652-1ecd61f21b61)
+![UI3](https://github.com/user-attachments/assets/7003f2b5-cb61-4083-8bd9-615bdd1479c9)
 
-# 플레이 프리뷰
+## 플레이 프리뷰
 ![목표출력](https://github.com/user-attachments/assets/56d20cff-6076-4b5f-9a91-d4d61d270c7f)![에너미](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/f78013a9-79eb-4db8-ba22-5a3f8a66ec78)![다이얼](https://github.com/shin0624/Studio_Chosun_Heresis/assets/91828379/286e559b-fa84-48e8-8faa-45e2836a87e5)![비번동영상](https://github.com/user-attachments/assets/dcbfc285-bde2-4cc5-bdd1-1ced9d70f2da)
+
+## 정신력 시스템 : 정신력 감소 시 사야 제한 및 심장박동 사운드 증가
+![약먹는장면인터벌](https://github.com/user-attachments/assets/02bce26a-04b4-4401-8961-5fab88f1dc95)
 
 # 인게임 프리뷰
 ## 개발 진행 중인 이미지가 포함됩니다. 지속적으로 업데이트 중입니다. ##
