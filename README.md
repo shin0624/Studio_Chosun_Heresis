@@ -41,7 +41,7 @@
 ![게임소개](https://github.com/user-attachments/assets/987c9902-97dc-405e-b0ce-fb536283983f)
 
 # 주요 캐릭터 목록
-![캐릭터목록](https://github.com/user-attachments/assets/a75106ad-a599-48d0-8c63-5db197f70d85)
+![캐릭터목록](https://github.com/user-attachments/assets/67d46a71-50fd-48ec-bd2a-bd07b9dda220)
 
 # 프로젝트 디테일
 1. 개발도구
