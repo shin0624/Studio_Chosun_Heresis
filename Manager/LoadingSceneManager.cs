@@ -9,10 +9,17 @@ using UnityEngine.UI;
 public class LoadingSceneManager : MonoBehaviour
 {
     public static string nextScene;//다음 씬 이름
-    public Image Progress;//로딩화면 이미지
+
+    [SerializeField]
+    private Image Progress;//로딩 바 이미지
+    [SerializeField]
+    private List<Sprite> ProgressImages = new List<Sprite>();//스프라이트 이미지를 랜덤으로 보여주기 위해, 스프라이트 객체를 담을 리스트를 선언. 리스트는 동적크기할당이 가능한 자료형이라 작은 수의 이미지는 굳이 크기지정을 안해줘도 됨. 아주 많은 이미지를 넣는다면 지정해주면 좋음.
+    [SerializeField]
+    private Image LoadingPanelImage;//패널에 보여줄 이미지 변수
 
     void Start()
     {
+        SetRandomLoadingImage();
         StartCoroutine(LoadSceneCoroutione());
     }
 
@@ -30,35 +37,29 @@ public class LoadingSceneManager : MonoBehaviour
 
         op.allowSceneActivation = false;//씬의 로딩이 끝나면 자동으로 불러온 씬으로 이동할 것인가를 묻는 옵션. 
                                         //false로 설정하여 로딩 완료 시 다음 씬으로 전환되지 않고 대기 -> true가 될 때 마무리 로딩 후 씬 전환
-
-        float timer = 0.0f;
-        while(!op.isDone)//로딩이 완료될 때 까지 반복한다.
+        while(!op.isDone)
         {
-            yield return null;//한 프레임 대기
-            timer+=Time.deltaTime;//타이머 시간 증가
+            yield return null;// 한 프레임 대기
+            //로딩 진행도에 맞춰서 fillAmount를 적용.
+            float ProgressValue = Mathf.Clamp01(op.progress / 0.9f);//Clamp01을 사용해서 로딩 진행도를 0.0 ~ 1.0으로 맞춘다. Clamp01은 퍼센트값을 다룰 때 유용.
+            Progress.fillAmount = ProgressValue;
 
-            if(op.progress < 0.9f)//비동기객체의 진행도가 0.9 이하(즉, 로딩 진행중)일때
+            if(op.progress >= 0.9f)//로딩 완료 시
             {
-                //로딩 이미지의 fillAmount를 현재 로딩 진행도에 맞춰 부드럽게 증가시킴.
-                Progress.fillAmount = Mathf.Lerp(Progress.fillAmount, op.progress, timer);
-                
-                if(Progress.fillAmount >=op.progress)//로딩 이미지의 fillAmount가 로딩 진행도보다 크거나 같아지면(즉, 칸이 다 찼는데도 로딩중이면)
-                {
-                    timer = 0f;//타이머는 다시 0으로.
-                }
-            }
-            else//로딩 진행도가 0.9 이상일 때(거의 완료된 상태)
-            {
-                Progress.fillAmount = Mathf.Lerp(Progress.fillAmount, 1f, timer);//로딩 이미지의 fillAmount를 1(100%)로 부드럽게 증가시킴
-                
-                if(Progress.fillAmount ==1.0f)//로딩 이미지의 fillAmount가 1이 되면 다음 씬으로 전환
-                {
-                    op.allowSceneActivation = true;
-                    yield break;
-                }
-            }
+                Progress.fillAmount = 1.0f;//로딩 완료 시 100%로 맞춘다.
+                op.allowSceneActivation = true;//씬 전환
+                yield break;
+            }       
         }
-    
+    }
+
+    private void SetRandomLoadingImage()//랜덤 이미지를 설정하는 메서드
+    {
+        if(ProgressImages.Count >0)//리스트에 이미지가 있으면
+        {
+            int RandomIndex = Random.Range(0, ProgressImages.Count);//랜덤 인덱스 생성
+            LoadingPanelImage.sprite = ProgressImages[RandomIndex];//패널 이미지 변경
+        }
     }
 
 }
