@@ -2,121 +2,119 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.Android;
 
 public class FanaticController : MonoBehaviour
 {
-    //광신도 캐릭터 컨트롤러
+    //광신도 캐릭터 컨트롤러 - A* 알고리즘 적용 클래스
 
     [SerializeField]
-    private Transform Player; // 플레이어의 트랜스폼
+    private Transform Player;//플레이어의 트랜스폼
     [SerializeField]
-    private NavMeshAgent agent;// Bake된 NavMesh에서 활동할 에너미
+    private NavMeshAgent Agent; // Bake된 NavMesh에서 활동할 에너미
     [SerializeField]
-    private Animator anim;
+    private Animator Anim;
     [SerializeField]
-    private const float ChaseRange = 12.0f;// 플레이어 추격가능 범위
+    private const float ChaseRange = 12.0f;//플레이어 추격 가능 범위
     [SerializeField]
-    private const float DetectionRange = 8.0f;//플레이어 탐지 거리
+    private const float DetectionRange = 8.0f;// 플레이어 탐지 거리
     [SerializeField]
     private const float AttackRange = 1.0f;// 공격 가능 범위
 
-    private Define.EnemyState state;//에너미 스테이트 변수 선언
-    private float DistanceToPlayer;//플레이어와의 거리를 저장할 변수 선언
+    private Define.EnemyState state;//에너미 상태 변수
+    private float DistanceToPlayer;//플레이어와의 거리를 저장할 변수
 
-    private Stack<Vector3> dfsStack = new Stack<Vector3>(); // 깊이우선탐색 스택
-    private HashSet<Vector3> visitedPositions = new HashSet<Vector3>();// 방문한 위치를 저장할 해쉬셋
+    private List<Vector3> Path = new List<Vector3>();// A*알고리즘으로 계산된 경로를저장할 리스트
+    private int CurrentPathIndex = 0;// 에너미가 현재 이동중인 경로 지점의 인덱스. 처음에는 Path[0]으로 이동.
 
-    void Start()
+    private void Start()
     {
-        state = Define.EnemyState.IDLE; // 초기상태 : idle
-        agent = GetComponent<NavMeshAgent>();
-        agent.isStopped= true;
-        BeginDFS();//처음에 DFS 탐색 시작
+        state = Define.EnemyState.IDLE;//초기상태 : IDLE
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.isStopped = true;
+
+        BeginPatrol();//처음에 탐지 시작
     }
-    
-    void Update()
-    {
-        DistanceToPlayer = Vector3.Distance(transform.position, Player.position);// 거리 계산은 각 메서드가 아닌 Update문에서 시행. 즉각적으로 에너미 상태가 스위칭되어야 하므로, 매 프레임 계산하는 것이 간편할 수 있음.
 
-        switch(state)
-        {
+    private void Update()
+    {
+        DistanceToPlayer = Vector3.Distance(transform.position, Player.position);//플레이어와 에너미 사이의 거리를 계산
+        switch (state)
+        { 
             case Define.EnemyState.IDLE:
             case Define.EnemyState.WALKING:
-                UpdateDFS();//탐색을 통해 맵을 돌아다닌다.
+                Patrol();//경로에 따라 탐색을 계속 진행
                 break;
             case Define.EnemyState.RUNNING:
-                UpdateChase();//플레이어를 추격
+                UpdateChase();// 플레이어를 추격
                 break;
             case Define.EnemyState.ATTACK:
-                UpdateAttack();//플레이어를 공격 
+                UpdateAttack();//플레이어를 공격
                 break;
-        }
+        }    
     }
 
-    private void BeginDFS()// dfs탐색을 시작하는 메서드
+    private void Patrol()// 탐색상태
     {
-        dfsStack.Clear();// 스택 초기화
-        visitedPositions.Clear();//방문장소 해쉬셋 초기화
-        dfsStack.Push(transform.position);// 에너미의 현재 위치에서 탐색 시작
-
-        SetState(Define.EnemyState.WALKING, "WALKING");//걸어다니며 탐색 시작
-    }
-
-    private void UpdateDFS()
-    {
-        if(agent.isOnNavMesh && dfsStack.Count>0)//에너미가 bake된 navmesh에 있고, 탐색이 시작되었을 때
+        if(Agent.isOnNavMesh && Path.Count>0)
         {
-            agent.isStopped = false;
-            agent.speed = 0.2f;
-            if(DistanceToPlayer <=DetectionRange)// 설정해놓은 탐색 반경 내에 플레이어가 있다면 --> 추격(running)
+            Agent.isStopped = false;
+            Agent.speed = 0.2f;
+
+            if(DistanceToPlayer <=DetectionRange && state!=Define.EnemyState.ATTACK)//탐지 범위 내에 플레이어가 존재하면 && 공격 상태가 아닐 때 추격을 시작한다.
             {
                 SetState(Define.EnemyState.RUNNING, "RUNNING");
                 return;
             }
-            
-            //탐색 진행
-            if(!agent.hasPath || agent.remainingDistance < 3.0f)// 초기 경로를 갖고있지 않거나 목표지점에 도달한 경우
+
+            if(!Agent.hasPath || Agent.remainingDistance < 1.0f)//현재 경로가 없거나, 목표 지점에 도달하면
             {
-                Vector3 CurrentPos = dfsStack.Pop();//스택에서 위치를 꺼내서 이동
-                visitedPositions.Add(CurrentPos);//방문한 위치로 기록.
-
-                //상하좌우 4방향으로 탐색을 진행.
-                Vector3[] directions = {Vector3.forward, Vector3.back, Vector3.left, Vector3.right};
-                foreach (Vector3 direction in directions)
-                {   
-                    Vector3 NewPos = CurrentPos + direction * 1.1f ;// 1.5m 간격으로 새로운 위치를 계산
-                    //SamplePosition((Vector3 sourcePosition, out NavmeshHit hit, float maxDistance, int areaMask)
-                    // 샘플포지션 메서드 : areaMask에 해당하는 NavMesh 중에서, maxDistance 반경 내에서 sourcePosition에 최근접한 위치를 찾아 hit에 담는다.
-                    if (NavMesh.SamplePosition(NewPos, out NavMeshHit hit, 3.0f, NavMesh.AllAreas ) && !visitedPositions.Contains(hit.position)) //1.5m 이내에서, 위의 새로이 계산한 위치와 최근접한 위치를 찾아 hit에 담는다.
-                    {
-                        dfsStack.Push(hit.position);//유효한 위치이면 스택에 추가   
-                    }
-                }
-                agent.destination= CurrentPos;//이동할 위치 설정
-                Debug.Log($"Destination : {CurrentPos}  / agent Dest : {agent.destination}");
-
-                if(agent.destination == CurrentPos)
+                if(CurrentPathIndex < Path.Count)//경로 상의 다음 지점으로 이동
                 {
-                    Debug.Log("Same destination is set repeatedly. Confirmation required");
-                }  
+                    Agent.SetDestination(Path[CurrentPathIndex]);
+                    CurrentPathIndex++;//현재 이동중인 경로의 다음 경로로 이동할 것.
+                }
+                else// 경로 끝에 도달하면 새 경로 계산
+                {
+                    CalculateNewPath();
+                }
             }
         }
     }
 
-    private void UpdateChase()// 추격상태 메서드
+    private void BeginPatrol()
     {
-        if(agent.isOnNavMesh)
-        {
-            agent.isStopped = false;
-            agent.speed = 0.7f;
-            agent.destination = Player.position;
+        SetState(Define.EnemyState.WALKING, "WALKING"); // 걸어다니며 탐색 시작
+        Agent.isStopped = false;
+        CalculateNewPath();// 새로운 경로를 계산
+    }
 
-            if (DistanceToPlayer > ChaseRange)//플레이어가 추적 범위 밖으로 나가면
+    private void UpdateAttack()// 공격 후 -> 플레이어와의 거리가 공격 가능 범위를 넘어간 상태 && 플레이어와의 거리가 아직 탐지 범위에 포함될 때 다시 쫒아가 플레이어를 공격해야 함.
+    {
+        if(Agent.isOnNavMesh)
+        {
+            Agent.isStopped = true;//공격 시 그 자리에서 멈춤
+            SetState(Define.EnemyState.ATTACK, "ATTACK");
+            if(DistanceToPlayer > AttackRange)// 공격범위를 벗어났다면
             {
-                BeginDFS();//다시 탐색 시작
+                UpdateChase();
+                return;
             }
-            else if(DistanceToPlayer <AttackRange)//플레이어와의 거리가 AttackRange 이하로 줄어들면 공격상태로 변화
+        }
+    }
+
+    private void UpdateChase()
+    {
+        if(Agent.isOnNavMesh)
+        {
+            SetState(Define.EnemyState.RUNNING, "RUNNING");
+            Agent.isStopped = false;
+            Agent.speed = 0.7f;
+            Agent.destination = Player.position;// 목적지를 플레이어 포지션으로 설정하여 추격
+            if(DistanceToPlayer > ChaseRange)//플레이어와의 거리가 추격 가능 범위를 벗어났다면
+            {
+                BeginPatrol();//탐지 상태로 전환 
+            }
+            else if(DistanceToPlayer < AttackRange)//공격 가능 범위까지 다가갔다면
             {
                 UpdateAttack();
                 return;
@@ -124,27 +122,25 @@ public class FanaticController : MonoBehaviour
         }
     }
 
-    private void SetState(Define.EnemyState NewState, string AnimationTrigger)
+    private void CalculateNewPath()// 새로운 경로를 계산하는 메서드
     {
-        if(state!=NewState)//불필요한 상태 변경(running상태에서 또 running을 설정하는 경우 등) 최소화
+        Vector3 RandomDirection = Random.insideUnitSphere * 10.0f;// 반경 1을 갖는 구 안의 임의 지점 * 10으로 경로 설정
+        RandomDirection += transform.position;// 에너미 포지션 값에 랜덤 값을 더한다
+
+        NavMeshHit hit;
+        //SamplePosition((Vector3 sourcePosition, out NavmeshHit hit, float maxDistance, int areaMask)
+        // 샘플포지션 메서드 : areaMask에 해당하는 NavMesh 중에서, maxDistance 반경 내에서 sourcePosition에 최근접한 위치를 찾아 hit에 담는다.
+        if (NavMesh.SamplePosition(RandomDirection, out hit, 10.0f, NavMesh.AllAreas))
         {
-            state = NewState;
-            anim.SetTrigger(AnimationTrigger);//애니메이션 상태 전환
+            Path.Clear();
+            Path.Add(hit.position);//A* 알고리즘에 해당하는 경로 설정
+            CurrentPathIndex = 0;// 현재위치를 담는 변수 초기화
+            Agent.SetDestination(Path[CurrentPathIndex]);
         }
     }
 
-    private void UpdateAttack()
+    private void SetState(Define.EnemyState NewState, string AnimationTrigger)// 상태변경 메서드
     {
-        if(agent.isOnNavMesh)
-        {
-            agent.isStopped = true;// 플레이어에 가까이 다가가면 멈춰서 공격
-            SetState(Define.EnemyState.ATTACK, "ATTACK");
-
-            if (DistanceToPlayer > AttackRange)//플레이어가 공격 가능 범위 밖으로 나가면
-            {
-                UpdateChase();// 다시 쫒기 시작 -> 다시 공격 범위로 들어오면 공격하고, 그대로 범위를 벗어나면 탐색으로 전환.
-                return;
-            }
-        }
+        if (state != NewState) { state = NewState; Anim.SetTrigger(AnimationTrigger); }//불필요한 상태 변경을 최소화. 각각의 상태에 맞게 애니메이터의 트리거를 바꾸어준다
     }
 }
