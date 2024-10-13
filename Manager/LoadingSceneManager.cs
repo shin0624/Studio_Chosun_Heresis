@@ -1,65 +1,133 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LoadingSceneManager : MonoBehaviour
 {
-    public static string nextScene;//다음 씬 이름
+    public static string nextScene; // 다음 씬 이름
 
-    [SerializeField]
-    private Image Progress;//로딩 바 이미지
-    [SerializeField]
-    private List<Sprite> ProgressImages = new List<Sprite>();//스프라이트 이미지를 랜덤으로 보여주기 위해, 스프라이트 객체를 담을 리스트를 선언. 리스트는 동적크기할당이 가능한 자료형이라 작은 수의 이미지는 굳이 크기지정을 안해줘도 됨. 아주 많은 이미지를 넣는다면 지정해주면 좋음.
-    [SerializeField]
-    private Image LoadingPanelImage;//패널에 보여줄 이미지 변수
+    // UI Elements
+    [SerializeField] private Image loadingBar; // 로딩 바 이미지
+    [SerializeField] private List<Sprite> backgroundImages = new List<Sprite>(); // 배경 이미지 리스트
+    [SerializeField] private Image backgroundImage; // 배경 이미지 오브젝트
+    [SerializeField] private Material bloodMaterial; // 피 머티리얼
+    [SerializeField] private float waveSpeed = 0.1f; // 피가 찰랑이는 속도
+    [SerializeField] private TextMeshProUGUI tipText; // 팁 텍스트
+    [SerializeField] private TextMeshProUGUI mapNameText; // 맵 이름 텍스트
+
+    // 팁 리스트
+    public string[] tips = {
+        "Tip: W A S D 를 이용하여 움직일 수 있습니다.",
+        "Tip: F를 눌러 플래시를 끄고 켤 수 있습니다.",
+        "Tip: 저는 전주이씨 덕흥대원군파 17대 시조 46세손 입니다.",
+        "Tip: 팁 테스트1.",
+        "Tip: 팁 테스트2.",
+        "Tip: 팁 테스트3.",
+        "Tip: 팁 테스트4.",
+        "Tip: 팁 테스트5."
+    };
+
+    private Queue<string> recentTips = new Queue<string>(); // 최근 팁을 저장할 큐
+    private int maxRecentTips = 3; // 중복 방지를 위한 최대 큐 사이즈
 
     void Start()
     {
+        // 랜덤 배경 이미지 설정
         SetRandomLoadingImage();
-        StartCoroutine(LoadSceneCoroutione());
+
+        // 맵 이름 "헤레시스" 설정
+        mapNameText.text = "헤레시스";
+
+        // 비동기 로딩 시작
+        StartCoroutine(LoadAsyncScene());
+
+        // 팁 변경 코루틴 시작
+        StartCoroutine(ChangeTips());
     }
 
-    public static void LoadScene(string SceneName)//LoadScene을 정적으로 호출하여 다른 스크립트에서 쉽게 호출 가능
+    // 다른 스크립트에서 쉽게 호출할 수 있도록
+    public static void LoadScene(string sceneName)
     {
-        nextScene = SceneName;
-        SceneManager.LoadScene("LoadingScene");//로딩씬 호출
+        nextScene = sceneName;
+        SceneManager.LoadScene("LoadingScene"); // 로딩 씬 호출
     }
-    
-    IEnumerator LoadSceneCoroutione()//다음 씬을 비동기 방식으로 로드하는 코루틴
+
+    // 랜덤 배경 이미지 설정
+    private void SetRandomLoadingImage()
     {
-        yield return null;//프레임이 끝날 때 까지 대기
-
-        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);//다음 씬을 비동기 방식으로 로드 시작
-
-        op.allowSceneActivation = false;//씬의 로딩이 끝나면 자동으로 불러온 씬으로 이동할 것인가를 묻는 옵션. 
-                                        //false로 설정하여 로딩 완료 시 다음 씬으로 전환되지 않고 대기 -> true가 될 때 마무리 로딩 후 씬 전환
-        while(!op.isDone)
+        if (backgroundImages.Count > 0)
         {
-            yield return null;// 한 프레임 대기
-            //로딩 진행도에 맞춰서 fillAmount를 적용.
-            float ProgressValue = Mathf.Clamp01(op.progress / 0.9f);//Clamp01을 사용해서 로딩 진행도를 0.0 ~ 1.0으로 맞춘다. Clamp01은 퍼센트값을 다룰 때 유용.
-            Progress.fillAmount = ProgressValue;
+            int randomIndex = Random.Range(0, backgroundImages.Count);
+            backgroundImage.sprite = backgroundImages[randomIndex];
+        }
+    }
 
-            if(op.progress >= 0.9f)//로딩 완료 시
+    // 비동기 씬 로드
+    IEnumerator LoadAsyncScene()
+    {
+        yield return null; // 프레임 끝까지 대기
+
+        // 씬 로드 시작
+        AsyncOperation operation = SceneManager.LoadSceneAsync(nextScene);
+        operation.allowSceneActivation = false; // 자동으로 씬 전환되지 않도록 설정
+
+        float loadingDuration = 2.0f; // 최소 로딩 시간 (초)
+        float startTime = Time.time; // 로딩 시작 시간
+
+        while (!operation.isDone)
+        {
+            // 로딩 진행도 반영 (0~1)
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            loadingBar.fillAmount = progress;
+
+            // 피 텍스처의 UV 좌표를 움직여서 찰랑이는 효과 주기
+            bloodMaterial.mainTextureOffset = new Vector2(0, Time.time * waveSpeed);
+            //bloodMaterial.mainTextureOffset = new Vector2(Mathf.Sin(Time.time * waveSpeed), Mathf.Cos(Time.time * waveSpeed));
+
+            // 로딩 완료 시
+            if (operation.progress >= 0.9f)
             {
-                Progress.fillAmount = 1.0f;//로딩 완료 시 100%로 맞춘다.
-                op.allowSceneActivation = true;//씬 전환
-                yield break;
-            }       
+                // 최소 로딩 시간을 보장
+                float elapsedTime = Time.time - startTime;
+                if (elapsedTime < loadingDuration)
+                {
+                    // 남은 시간만큼 대기
+                    yield return new WaitForSeconds(loadingDuration - elapsedTime);
+                }
+
+                loadingBar.fillAmount = 1.0f; // 로딩 완료
+                operation.allowSceneActivation = true; // 씬 전환
+            }
+
+            yield return null;
         }
     }
 
-    private void SetRandomLoadingImage()//랜덤 이미지를 설정하는 메서드
+    // 팁을 3초마다 랜덤으로 변경, 중복 방지
+    IEnumerator ChangeTips()
     {
-        if(ProgressImages.Count >0)//리스트에 이미지가 있으면
+        while (true)
         {
-            int RandomIndex = Random.Range(0, ProgressImages.Count);//랜덤 인덱스 생성
-            LoadingPanelImage.sprite = ProgressImages[RandomIndex];//패널 이미지 변경
+            string newTip;
+            do
+            {
+                newTip = tips[Random.Range(0, tips.Length)];
+            } while (recentTips.Contains(newTip));
+
+            tipText.text = newTip;
+
+            // 최근 팁 저장 및 중복 방지
+            recentTips.Enqueue(newTip);
+            if (recentTips.Count > maxRecentTips)
+            {
+                recentTips.Dequeue(); // 오래된 팁 제거
+            }
+
+            // 3초 대기
+            yield return new WaitForSeconds(3f);
         }
     }
-
 }
