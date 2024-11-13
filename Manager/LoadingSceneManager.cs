@@ -1,65 +1,318 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
+// ë¡œë”© í™”ë©´ì„ ê´€ë¦¬í•˜ëŠ” ë§¤ë‹ˆì € í´ë˜ìŠ¤
+// ì”¬ ì „í™˜ ì‹œ ë¡œë”© í™”ë©´ì„ í‘œì‹œí•˜ê³ , ì§„í–‰ ìƒíƒœë¥¼ ì‹œê°ì ìœ¼ë¡œ í‘œí˜„
 public class LoadingSceneManager : MonoBehaviour
 {
-    public static string nextScene;//´ÙÀ½ ¾À ÀÌ¸§
+    // ë‹¤ìŒì— ë¡œë“œí•  ì”¬ì˜ ì´ë¦„ì„ ì €ì¥í•˜ëŠ” ì •ì  ë³€ìˆ˜
+    public static string nextScene;
 
-    [SerializeField]
-    private Image Progress;//·Îµù ¹Ù ÀÌ¹ÌÁö
-    [SerializeField]
-    private List<Sprite> ProgressImages = new List<Sprite>();//½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁö¸¦ ·£´ıÀ¸·Î º¸¿©ÁÖ±â À§ÇØ, ½ºÇÁ¶óÀÌÆ® °´Ã¼¸¦ ´ãÀ» ¸®½ºÆ®¸¦ ¼±¾ğ. ¸®½ºÆ®´Â µ¿ÀûÅ©±âÇÒ´çÀÌ °¡´ÉÇÑ ÀÚ·áÇüÀÌ¶ó ÀÛÀº ¼öÀÇ ÀÌ¹ÌÁö´Â ±»ÀÌ Å©±âÁöÁ¤À» ¾ÈÇØÁàµµ µÊ. ¾ÆÁÖ ¸¹Àº ÀÌ¹ÌÁö¸¦ ³Ö´Â´Ù¸é ÁöÁ¤ÇØÁÖ¸é ÁÁÀ½.
-    [SerializeField]
-    private Image LoadingPanelImage;//ÆĞ³Î¿¡ º¸¿©ÁÙ ÀÌ¹ÌÁö º¯¼ö
+    // === UI ì»´í¬ë„ŒíŠ¸ ì°¸ì¡° ===
+    [Header("UI References")]
+    [SerializeField] private Slider loadingBar;           // ë¡œë”© ì§„í–‰ë„ë¥¼ í‘œì‹œí•  ìŠ¬ë¼ì´ë”
+    [SerializeField] private Image backgroundImage;       // ë°°ê²½ ì´ë¯¸ì§€
+    [SerializeField] private TextMeshProUGUI tipText;     // íŒ ë©”ì‹œì§€ë¥¼ í‘œì‹œí•  í…ìŠ¤íŠ¸
+    [SerializeField] private TextMeshProUGUI mapNameText; // ë§µ ì´ë¦„ì„ í‘œì‹œí•  í…ìŠ¤íŠ¸
 
-    void Start()
+    // === ë¡œë”© í™”ë©´ ì„¤ì • ===
+    [Header("Loading Settings")]
+    [SerializeField] private List<Sprite> backgroundImages = new List<Sprite>();  // ëœë¤í•˜ê²Œ í‘œì‹œë  ë°°ê²½ ì´ë¯¸ì§€ ëª©ë¡
+    [SerializeField] private Material bloodMaterial;       // í”¼ íš¨ê³¼ì— ì‚¬ìš©ë  ë¨¸í‹°ë¦¬ì–¼
+    [SerializeField] private float minLoadingTime = 5.0f;  // ìµœì†Œ ë¡œë”© ì‹œê°„(ì´ˆ)
+    [SerializeField] private float tipChangeInterval = 3.0f; // íŒ ë³€ê²½ ê°„ê²©(ì´ˆ)
+
+    // === ë¡œë”©ë°” ì„¤ì • ===
+    [Header("Loading Bar Settings")]
+    [SerializeField] private float fillSpeed = 0.2f;      // ë¡œë”©ë°”ê°€ ì±„ì›Œì§€ëŠ” ì†ë„
+    [SerializeField] private float smoothness = 1f;       // ë¡œë”©ë°” ì›€ì§ì„ì˜ ë¶€ë“œëŸ¬ì›€
+    [SerializeField] private float initialDelay = 0.5f;   // ì´ˆê¸° ëŒ€ê¸° ì‹œê°„
+
+    // === í”¼ íš¨ê³¼ ì„¤ì • ===
+    [Header("Blood Effect Settings")]
+    [SerializeField, Range(0, 5)] private float waveSpeed = 1f;      // ì›¨ì´ë¸Œ ì›€ì§ì„ ì†ë„
+    [SerializeField, Range(0, 10)] private float waveFrequency = 3f; // ì›¨ì´ë¸Œ ì£¼íŒŒìˆ˜
+    [SerializeField, Range(0, 0.5f)] private float waveAmplitude = 0.1f; // ì›¨ì´ë¸Œ ì§„í­
+
+    // === ìºì‹œëœ ë¬¸ìì—´ ìƒìˆ˜ ===
+    private const string LOADING_SCENE = "LoadingScene";  // ë¡œë”© ì”¬ ì´ë¦„
+    private const string MAP_NAME = "í—¤ë ˆì‹œìŠ¤";           // ë§µ ì´ë¦„
+    private const string MAP_NAME_TEXT = "MapNameText";   // ë§µ ì´ë¦„ í…ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ ì´ë¦„
+
+    // ìºì‹œëœ WaitForSeconds ê°ì²´ë“¤ (ì„±ëŠ¥ ìµœì í™”ìš©)
+    private static readonly WaitForSeconds INITIAL_SCENE_DELAY = new WaitForSeconds(0.1f);
+    private static readonly WaitForSeconds LOADING_COMPLETE_DELAY = new WaitForSeconds(0.5f);
+
+    // === ê²Œì„ íŒ ëª©ë¡ ===
+    // í”Œë ˆì´ì–´ì—ê²Œ í‘œì‹œë  íŒ ë©”ì‹œì§€ë“¤ì„ ì €ì¥í•˜ëŠ” ë°°ì—´
+    private static readonly string[] TIPS = {
+       "Tip: W A S D ë¥¼ ì´ìš©í•˜ì—¬ ì›€ì§ì¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+       "Tip: Fë¥¼ ëˆŒëŸ¬ í”Œë˜ì‹œë¥¼ ë„ê³  ì¼¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+       "Tip: ì¼ì§€ë‚˜ ë©”ëª¨ë¥¼ ì£¼ì˜ ê¹Šê²Œ ì½ì–´ë³´ì„¸ìš”. ì¤‘ìš”í•œ ì •ë³´ê°€ ë‹´ê²¨ìˆì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+       "Tip: ì•„ì´í…œì„ ì°¾ì„ ë•ŒëŠ” êµ¬ì„êµ¬ì„ì„ ì˜ ì‚´í´ë³´ì„¸ìš”. ì‘ì€ ë‹¨ì„œê°€ ìˆ¨ì–´ìˆì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+       "ë°©ê¸ˆ ë“¤ì€ ì†ì‚­ì„ì€ ì§„ì§œì¼ê¹Œìš”, ì•„ë‹ˆë©´ ë‹¹ì‹ ì˜ ìƒìƒì¼ê¹Œìš”?",
+       "ë‹¹ì‹  ë’¤ì— ëˆ„ê°€ ìˆëŠ” ê²ƒ ê°™ë‚˜ìš”? ì•„ë§ˆë„ ì°©ê°ì¼ ê²ë‹ˆë‹¤... ì•„ë§ˆë„ìš”."
+   };
+
+    // ìµœê·¼ì— í‘œì‹œëœ íŒì˜ ìµœëŒ€ ê°œìˆ˜ (ì¤‘ë³µ ë°©ì§€ìš©)
+    private const int MAX_RECENT_TIPS = 3;
+
+    // === í”„ë¼ì´ë¹— ë³€ìˆ˜ë“¤ ===
+    private float targetProgress;          // ëª©í‘œ ì§„í–‰ë„
+    private float currentProgress;         // í˜„ì¬ ì§„í–‰ë„
+    private bool isOperationComplete;      // ì”¬ ë¡œë”© ì™„ë£Œ ì—¬ë¶€
+    private AsyncOperation loadOperation;   // ë¹„ë™ê¸° ì”¬ ë¡œë”© ì‘ì—…
+    private bool isLoading;                // í˜„ì¬ ë¡œë”© ì¤‘ì¸ì§€ ì—¬ë¶€
+    private readonly HashSet<int> recentTipIndices = new HashSet<int>();  // ìµœê·¼ í‘œì‹œëœ íŒ ì¸ë±ìŠ¤ ì €ì¥
+    private readonly System.Random random = new System.Random();           // ëœë¤ ìƒì„±ê¸°
+    private WaitForSeconds tipChangeWait;  // íŒ ë³€ê²½ ëŒ€ê¸° ì‹œê°„
+
+    // ì»´í¬ë„ŒíŠ¸ ì´ˆê¸°í™”
+    private void Awake()
     {
-        SetRandomLoadingImage();
-        StartCoroutine(LoadSceneCoroutione());
+        InitializeVariables();     // ë³€ìˆ˜ ì´ˆê¸°í™”
+        AutoAssignComponents();    // ì»´í¬ë„ŒíŠ¸ ìë™ í• ë‹¹
+        ValidateReferences();      // ì°¸ì¡° ìœ íš¨ì„± ê²€ì‚¬
     }
 
-    public static void LoadScene(string SceneName)//LoadSceneÀ» Á¤ÀûÀ¸·Î È£ÃâÇÏ¿© ´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ ½±°Ô È£Ãâ °¡´É
+    // ë³€ìˆ˜ ì´ˆê¸°í™”
+    private void InitializeVariables()
     {
-        nextScene = SceneName;
-        SceneManager.LoadScene("LoadingScene");//·Îµù¾À È£Ãâ
+        targetProgress = 0f;
+        currentProgress = 0f;
+        isOperationComplete = false;
+        isLoading = false;
+        tipChangeWait = new WaitForSeconds(tipChangeInterval);
     }
-    
-    IEnumerator LoadSceneCoroutione()//´ÙÀ½ ¾ÀÀ» ºñµ¿±â ¹æ½ÄÀ¸·Î ·ÎµåÇÏ´Â ÄÚ·çÆ¾
+
+    // ëˆ„ë½ëœ ì»´í¬ë„ŒíŠ¸ ìë™ ì°¾ê¸° ë° í• ë‹¹
+    private void AutoAssignComponents()
     {
-        yield return null;//ÇÁ·¹ÀÓÀÌ ³¡³¯ ¶§ ±îÁö ´ë±â
+        loadingBar ??= GetComponentInChildren<Slider>();
+        backgroundImage ??= GetComponentInChildren<Image>();
+        tipText ??= GetComponentInChildren<TextMeshProUGUI>();
+        mapNameText ??= GameObject.Find(MAP_NAME_TEXT)?.GetComponent<TextMeshProUGUI>();
+    }
 
-        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);//´ÙÀ½ ¾ÀÀ» ºñµ¿±â ¹æ½ÄÀ¸·Î ·Îµå ½ÃÀÛ
-
-        op.allowSceneActivation = false;//¾ÀÀÇ ·ÎµùÀÌ ³¡³ª¸é ÀÚµ¿À¸·Î ºÒ·¯¿Â ¾ÀÀ¸·Î ÀÌµ¿ÇÒ °ÍÀÎ°¡¸¦ ¹¯´Â ¿É¼Ç. 
-                                        //false·Î ¼³Á¤ÇÏ¿© ·Îµù ¿Ï·á ½Ã ´ÙÀ½ ¾ÀÀ¸·Î ÀüÈ¯µÇÁö ¾Ê°í ´ë±â -> true°¡ µÉ ¶§ ¸¶¹«¸® ·Îµù ÈÄ ¾À ÀüÈ¯
-        while(!op.isDone)
+    // í•„ìˆ˜ ì»´í¬ë„ŒíŠ¸ ìœ íš¨ì„± ê²€ì‚¬
+    private void ValidateReferences()
+    {
+        if (!AreComponentsValid())
         {
-            yield return null;// ÇÑ ÇÁ·¹ÀÓ ´ë±â
-            //·Îµù ÁøÇàµµ¿¡ ¸ÂÃç¼­ fillAmount¸¦ Àû¿ë.
-            float ProgressValue = Mathf.Clamp01(op.progress / 0.9f);//Clamp01À» »ç¿ëÇØ¼­ ·Îµù ÁøÇàµµ¸¦ 0.0 ~ 1.0À¸·Î ¸ÂÃá´Ù. Clamp01Àº ÆÛ¼¾Æ®°ªÀ» ´Ù·ê ¶§ À¯¿ë.
-            Progress.fillAmount = ProgressValue;
+            Debug.LogError("Essential components are missing. Disabling LoadingSceneManager.");
+            enabled = false;
+        }
+    }
 
-            if(op.progress >= 0.9f)//·Îµù ¿Ï·á ½Ã
+    // ëª¨ë“  í•„ìˆ˜ ì»´í¬ë„ŒíŠ¸ê°€ í• ë‹¹ë˜ì—ˆëŠ”ì§€ í™•ì¸
+    private bool AreComponentsValid() =>
+        loadingBar != null &&
+        backgroundImage != null &&
+        tipText != null &&
+        mapNameText != null &&
+        bloodMaterial != null;
+
+    // ì»´í¬ë„ŒíŠ¸ ì‹œì‘ ì‹œ ì´ˆê¸°í™”
+    private void Start()
+    {
+        if (!enabled || string.IsNullOrEmpty(nextScene)) return;
+        InitializeLoadingScene();
+    }
+
+    // ë¡œë”© í™”ë©´ ì´ˆê¸°í™”
+    private void InitializeLoadingScene()
+    {
+        ResetLoadingBar();         // ë¡œë”©ë°” ì´ˆê¸°í™”
+        SetRandomLoadingImage();   // ëœë¤ ë°°ê²½ ì´ë¯¸ì§€ ì„¤ì •
+        StartLoadingProcesses();   // ë¡œë”© í”„ë¡œì„¸ìŠ¤ ì‹œì‘
+    }
+
+    // ë¡œë”©ë°” ì´ˆê¸°í™”
+    private void ResetLoadingBar()
+    {
+        if (loadingBar != null)
+        {
+            loadingBar.value = 0f;
+            loadingBar.interactable = false;
+        }
+    }
+
+    // ëœë¤ ë°°ê²½ ì´ë¯¸ì§€ ì„¤ì •
+    private void SetRandomLoadingImage()
+    {
+        if (backgroundImages == null || backgroundImages.Count == 0) return;
+        backgroundImage.sprite = backgroundImages[Random.Range(0, backgroundImages.Count)];
+    }
+
+    // ë¡œë”© í”„ë¡œì„¸ìŠ¤ ì‹œì‘
+    private void StartLoadingProcesses()
+    {
+        mapNameText.text = MAP_NAME;
+        isLoading = true;
+
+        StartCoroutine(UpdateLoadingBar());   // ë¡œë”©ë°” ì—…ë°ì´íŠ¸ ì‹œì‘
+        StartCoroutine(DelayedLoadScene());   // ì”¬ ë¡œë”© ì‹œì‘
+        StartCoroutine(ChangeTips());         // íŒ ë³€ê²½ ì‹œì‘
+        UpdateBloodEffect();                  // ì´ˆê¸° í”¼ íš¨ê³¼ ì„¤ì •
+    }
+
+    // í”¼ íš¨ê³¼ ì—…ë°ì´íŠ¸
+    private void UpdateBloodEffect()
+    {
+        if (bloodMaterial == null) return;
+
+        // ì‰ì´ë” í”„ë¡œí¼í‹° ì—…ë°ì´íŠ¸
+        bloodMaterial.SetFloat("_WaveSpeed", waveSpeed);
+        bloodMaterial.SetFloat("_WaveFrequency", waveFrequency);
+        bloodMaterial.SetFloat("_WaveAmplitude", waveAmplitude);
+    }
+
+    // ì§€ì—°ëœ ì”¬ ë¡œë”© ì‹œì‘
+    private IEnumerator DelayedLoadScene()
+    {
+        yield return INITIAL_SCENE_DELAY;
+        StartCoroutine(LoadAsyncScene());
+    }
+
+    // ë‹¤ë¥¸ ì”¬ì—ì„œ ë¡œë”© í™”ë©´ì„ í˜¸ì¶œí•  ë•Œ ì‚¬ìš©í•˜ëŠ” ì •ì  ë©”ì„œë“œ
+    public static void LoadScene(string sceneName)
+    {
+        if (string.IsNullOrEmpty(sceneName)) return;
+
+        nextScene = sceneName;
+        ResetCurrentLoadingBar();
+        SceneManager.LoadScene(LOADING_SCENE);
+    }
+
+    // í˜„ì¬ ë¡œë”©ë°” ë¦¬ì…‹
+    private static void ResetCurrentLoadingBar()
+    {
+        if (FindObjectOfType<LoadingSceneManager>() is { } currentManager &&
+            currentManager.loadingBar != null)
+        {
+            currentManager.loadingBar.value = 0f;
+        }
+    }
+
+    // ë¹„ë™ê¸° ì”¬ ë¡œë”©
+    private IEnumerator LoadAsyncScene()
+    {
+        yield return INITIAL_SCENE_DELAY;
+
+        loadOperation = SceneManager.LoadSceneAsync(nextScene);
+        if (loadOperation == null) yield break;
+
+        loadOperation.allowSceneActivation = false;
+
+        while (!loadOperation.isDone)
+        {
+            if (loadOperation.progress >= 0.9f)
             {
-                Progress.fillAmount = 1.0f;//·Îµù ¿Ï·á ½Ã 100%·Î ¸ÂÃá´Ù.
-                op.allowSceneActivation = true;//¾À ÀüÈ¯
-                yield break;
-            }       
+                isOperationComplete = true;
+            }
+            yield return null;
         }
     }
 
-    private void SetRandomLoadingImage()//·£´ı ÀÌ¹ÌÁö¸¦ ¼³Á¤ÇÏ´Â ¸Ş¼­µå
+    // ë¡œë”©ë°” ì—…ë°ì´íŠ¸
+    private IEnumerator UpdateLoadingBar()
     {
-        if(ProgressImages.Count >0)//¸®½ºÆ®¿¡ ÀÌ¹ÌÁö°¡ ÀÖÀ¸¸é
+        float startTime = Time.time;
+        WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
+
+        yield return endOfFrame;
+        yield return new WaitForSeconds(initialDelay);
+
+        while (true)
         {
-            int RandomIndex = Random.Range(0, ProgressImages.Count);//·£´ı ÀÎµ¦½º »ı¼º
-            LoadingPanelImage.sprite = ProgressImages[RandomIndex];//ÆĞ³Î ÀÌ¹ÌÁö º¯°æ
+            float elapsedTime = Time.time - startTime;
+
+            if (loadOperation == null)
+            {
+                yield return endOfFrame;
+                continue;
+            }
+
+            UpdateProgress(elapsedTime);
+            UpdateBloodEffect();
+
+            if (ShouldCompleteLoading(elapsedTime))
+            {
+                CompleteLoading();
+                break;
+            }
+
+            yield return endOfFrame;
         }
+    }
+
+    // ì§„í–‰ë„ ì—…ë°ì´íŠ¸
+    private void UpdateProgress(float elapsedTime)
+    {
+        if (isOperationComplete && elapsedTime >= minLoadingTime)
+        {
+            targetProgress = 1f;
+            currentProgress = Mathf.MoveTowards(currentProgress, targetProgress, fillSpeed * 0.5f * Time.deltaTime);
+        }
+        else
+        {
+            float artificialProgress = (elapsedTime / minLoadingTime) * 0.9f;
+            targetProgress = Mathf.Min(artificialProgress, loadOperation.progress / 0.9f);
+            currentProgress = Mathf.Lerp(currentProgress, targetProgress, Time.deltaTime * smoothness);
+        }
+
+        loadingBar.value = currentProgress;
+    }
+
+    // ë¡œë”© ì™„ë£Œ ì¡°ê±´ ì²´í¬
+    private bool ShouldCompleteLoading(float elapsedTime) =>
+        currentProgress >= 0.99f && isOperationComplete && elapsedTime >= minLoadingTime;
+
+    // ë¡œë”© ì™„ë£Œ ì²˜ë¦¬
+    private void CompleteLoading()
+    {
+        loadingBar.value = 1f;
+        loadOperation.allowSceneActivation = true;
+    }
+
+    // íŒ ë©”ì‹œì§€ ë³€ê²½
+    private IEnumerator ChangeTips()
+    {
+        while (isLoading)
+        {
+            tipText.text = GetRandomUniqueTip();
+            yield return tipChangeWait;
+        }
+    }
+
+    // ì¤‘ë³µë˜ì§€ ì•ŠëŠ” ëœë¤ íŒ ì„ íƒ
+    private string GetRandomUniqueTip()
+    {
+        int tipIndex;
+        do
+        {
+            tipIndex = Random.Range(0, TIPS.Length);
+        } while (!recentTipIndices.Add(tipIndex) && recentTipIndices.Count < TIPS.Length);
+
+        if (recentTipIndices.Count > MAX_RECENT_TIPS)
+        {
+            recentTipIndices.Clear();
+            recentTipIndices.Add(tipIndex);
+        }
+
+        return TIPS[tipIndex];
+    }
+
+    // ì»´í¬ë„ŒíŠ¸ê°€ íŒŒê´´ë  ë•Œ ì •ë¦¬ ì‘ì—…
+    private void OnDestroy()
+    {
+        isLoading = false;
+        StopAllCoroutines();
+        recentTipIndices.Clear();
     }
 
 }
