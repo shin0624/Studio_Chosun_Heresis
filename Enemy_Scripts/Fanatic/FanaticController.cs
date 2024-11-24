@@ -26,6 +26,8 @@ public class FanaticController : MonoBehaviour
     private List<Vector3> Path = new List<Vector3>();// A*알고리즘으로 계산된 경로를저장할 리스트
     private int CurrentPathIndex = 0;// 에너미가 현재 이동중인 경로 지점의 인덱스. 처음에는 Path[0]으로 이동.
 
+    public SanityManager sanityManager; // SanityManager를 참조
+
     private void Start()
     {
         state = Define.EnemyState.IDLE;//초기상태 : IDLE
@@ -99,6 +101,7 @@ public class FanaticController : MonoBehaviour
                 UpdateChase();
                 return;
             }
+            sanityManager.DecreaseSanity(); //정신력 감소 호출
         }
     }
 
