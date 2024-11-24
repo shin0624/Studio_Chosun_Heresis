@@ -5,33 +5,33 @@ using UnityEngine.AI;
 
 public class FanaticController : MonoBehaviour
 {
-    //광신도 캐릭터 컨트롤러 - A* 알고리즘 적용 클래스
-
-    [SerializeField]
-    private Transform Player;//플레이어의 트랜스폼
-    [SerializeField]
-    private NavMeshAgent Agent; // Bake된 NavMesh에서 활동할 에너미
-    [SerializeField]
-    private Animator Anim;
-    [SerializeField]
-    private const float ChaseRange = 3.0f;//플레이어 추격 가능 범위
-    [SerializeField]
-    private const float DetectionRange = 3.0f;// 플레이어 탐지 거리
-    [SerializeField]
-    private const float AttackRange = 0.7f;// 공격 가능 범위
-
+    //광신도 캐릭터 컨트롤러
+//--------------------------에너미 행동 관련 변수-----------------------------------------
+    [SerializeField] private Transform Player;//플레이어의 트랜스폼
+    [SerializeField] private NavMeshAgent Agent; // Bake된 NavMesh에서 활동할 에너미
+    [SerializeField] private Animator Anim;
+    [SerializeField] private const float ChaseRange = 3.0f;//플레이어 추격 가능 범위
+    [SerializeField] private const float DetectionRange = 3.0f;// 플레이어 탐지 거리
+    [SerializeField] private const float AttackRange = 0.7f;// 공격 가능 범위
     private Define.EnemyState state;//에너미 상태 변수
     private float DistanceToPlayer;//플레이어와의 거리를 저장할 변수
 
+//--------------------------에너미 경로 계산 관련 변수------------------------------------
     private List<Vector3> Path = new List<Vector3>();// A*알고리즘으로 계산된 경로를저장할 리스트
     private int CurrentPathIndex = 0;// 에너미가 현재 이동중인 경로 지점의 인덱스. 처음에는 Path[0]으로 이동.
 
+    //--------------------------공격 및 정신력 감소 관련 변수------------------------------
+    public SanityManager sanityManager; // SanityManager를 참조
+    private bool canAttack = true; // 공격 가능 여부를 체크할 변수
+    private float attackCooldown = 1.0f;//공격 쿨타임
+    //------------------------------------------------------------------------------------
     private void Start()
     {
         state = Define.EnemyState.IDLE;//초기상태 : IDLE
         Agent = GetComponent<NavMeshAgent>();
         Agent.isStopped = true;
         Anim = GetComponent<Animator>();
+        sanityManager = GameObject.FindObjectOfType<SanityManager>(); // 추가: SanityManager 찾기
         BeginPatrol();//처음에 탐지 시작
     }
 
@@ -102,9 +102,19 @@ public class FanaticController : MonoBehaviour
                 UpdateChase();
                 return;
             }
-        Debug.Log($"현재 플레이어와의 거리 : {DistanceToPlayer}" );
-        Debug.Log($"현재 상태 : {state}");
-        }
+           
+        
+            if(canAttack)
+            {
+            Debug.Log($"현재 플레이어와의 거리 : {DistanceToPlayer}" );
+            Debug.Log($"현재 상태 : {state}");
+            sanityManager.DecreaseSanity(); //정신력 감소 호출
+            //24.11 문제 : 한번 공격할 때 마다 sanity가 전부 감소되어버림--> 해결방안 : 공격 가능 여부를 체크하는 코루틴을 사용하여 공격 쿨타임을 설정, 공격이 가능할 때에만 sanity를 감소할 수 있도록.
+            StartCoroutine(AttackCooldown());
+            }
+        
+        
+        } 
     }
 
     private void UpdateChase()
@@ -149,5 +159,12 @@ public class FanaticController : MonoBehaviour
     private void SetState(Define.EnemyState NewState, string AnimationTrigger)// 상태변경 메서드
     {
         if (state != NewState) { state = NewState; Anim.SetTrigger(AnimationTrigger); }//불필요한 상태 변경을 최소화. 각각의 상태에 맞게 애니메이터의 트리거를 바꾸어준다
+    }
+    
+    private IEnumerator AttackCooldown()//공격 쿨타임을 관리하는 코루틴. attackCooldown만큼 대기 후 공격 가능상태로 전환
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 }
