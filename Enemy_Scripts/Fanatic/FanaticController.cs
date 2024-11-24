@@ -14,11 +14,11 @@ public class FanaticController : MonoBehaviour
     [SerializeField]
     private Animator Anim;
     [SerializeField]
-    private const float ChaseRange = 12.0f;//플레이어 추격 가능 범위
+    private const float ChaseRange = 3.0f;//플레이어 추격 가능 범위
     [SerializeField]
-    private const float DetectionRange = 8.0f;// 플레이어 탐지 거리
+    private const float DetectionRange = 3.0f;// 플레이어 탐지 거리
     [SerializeField]
-    private const float AttackRange = 1.0f;// 공격 가능 범위
+    private const float AttackRange = 0.7f;// 공격 가능 범위
 
     private Define.EnemyState state;//에너미 상태 변수
     private float DistanceToPlayer;//플레이어와의 거리를 저장할 변수
@@ -26,14 +26,12 @@ public class FanaticController : MonoBehaviour
     private List<Vector3> Path = new List<Vector3>();// A*알고리즘으로 계산된 경로를저장할 리스트
     private int CurrentPathIndex = 0;// 에너미가 현재 이동중인 경로 지점의 인덱스. 처음에는 Path[0]으로 이동.
 
-    public SanityManager sanityManager; // SanityManager를 참조
-
     private void Start()
     {
         state = Define.EnemyState.IDLE;//초기상태 : IDLE
         Agent = GetComponent<NavMeshAgent>();
         Agent.isStopped = true;
-
+        Anim = GetComponent<Animator>();
         BeginPatrol();//처음에 탐지 시작
     }
 
@@ -43,6 +41,7 @@ public class FanaticController : MonoBehaviour
         switch (state)
         { 
             case Define.EnemyState.IDLE:
+            break;
             case Define.EnemyState.WALKING:
                 Patrol();//경로에 따라 탐색을 계속 진행
                 break;
@@ -88,6 +87,8 @@ public class FanaticController : MonoBehaviour
         SetState(Define.EnemyState.WALKING, "WALKING"); // 걸어다니며 탐색 시작
         Agent.isStopped = false;
         CalculateNewPath();// 새로운 경로를 계산
+        Debug.Log($"현재 플레이어와의 거리 : {DistanceToPlayer}" );
+        Debug.Log($"현재 상태 : {state}");
     }
 
     private void UpdateAttack()// 공격 후 -> 플레이어와의 거리가 공격 가능 범위를 넘어간 상태 && 플레이어와의 거리가 아직 탐지 범위에 포함될 때 다시 쫒아가 플레이어를 공격해야 함.
@@ -101,7 +102,8 @@ public class FanaticController : MonoBehaviour
                 UpdateChase();
                 return;
             }
-            sanityManager.DecreaseSanity(); //정신력 감소 호출
+        Debug.Log($"현재 플레이어와의 거리 : {DistanceToPlayer}" );
+        Debug.Log($"현재 상태 : {state}");
         }
     }
 
@@ -109,6 +111,8 @@ public class FanaticController : MonoBehaviour
     {
         if(Agent.isOnNavMesh)
         {
+                    Debug.Log($"현재 플레이어와의 거리 : {DistanceToPlayer}" );
+        Debug.Log($"현재 상태 : {state}");
             SetState(Define.EnemyState.RUNNING, "RUNNING");
             Agent.isStopped = false;
             Agent.speed = 0.7f;
