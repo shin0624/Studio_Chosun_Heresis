@@ -13,10 +13,18 @@ public class Define
         RUNNING,
         ATTACK,
     }
-
-    public enum DoctorState{
+    public enum DoctorState
+    {
         IDLE,
         WALKING,
+        RUNNING,
+        ATTACK,
+    }
+    public enum ShamanState
+    {
+        IDLE,
+        ROAR,
+        CHOKE,
         RUNNING,
         ATTACK,
     }
