@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0);">
+        <engine:VisualElement name="focus" style="flex-grow: 1; background-image: resource(&apos;img_assets/dot-focus-white&apos;); width: 2.5%; height: 5%; position: absolute; align-items: center; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+        <engine:VisualElement name="icon-paper" style="flex-grow: 1; position: absolute; top: 85%; left: 2%; bottom: 50px; right: 0; background-image: resource(&apos;img_assets/paper&apos;); width: 5%; height: 10%;" />
+        <engine:Label text="[J] documents" name="text-paper" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;); color: rgb(255, 255, 255); top: 94%; position: absolute; left: 2.4%;" />
+        <engine:Label text="[E]" name="text-e" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;); top: 36px; color: rgb(255, 255, 255); font-size: 30px; left: 2px;" />
+    </engine:VisualElement>
+</engine:UXML>

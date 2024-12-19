@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/styles/clue-btn.uss?fileID=7433441132597879392&amp;guid=ad80a5fbd08626e49a68273fa075f6c0&amp;type=3#clue-btn" />
+    <engine:VisualElement name="list-entry" class="clue-btn" style="flex-grow: 1; opacity: 1; position: absolute; background-image: resource(&apos;img_assets/button2&apos;); padding-left: 5%; padding-right: 5%; font-size: 15px; -unity-font-definition: initial; height: 46px; width: 226px; padding-bottom: 0; margin-bottom: 0; align-self: auto; -unity-background-image-tint-color: rgb(255, 255, 255);">
+        <engine:Label name="clue-name" class="clue-btn" style="font-size: 25px; align-self: center; -unity-font-definition: resource(&apos;font_assets/SokchoBadaCalligraphy&apos;);" />
+    </engine:VisualElement>
+</engine:UXML>
