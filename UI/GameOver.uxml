@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/styles/buttons.uss?fileID=7433441132597879392&amp;guid=cb942869901a2914ca515576903fc7b4&amp;type=3#buttons" />
+    <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.84);">
+        <engine:Label text="Game&#10;Over" name="Label" style="font-size: 270px; -unity-font-definition: resource(&apos;font_asset/JMH Wolfa&apos;); -unity-font-style: normal; color: rgb(118, 33, 33); top: 156px; -unity-text-align: upper-center; rotate: -5deg;" />
+        <engine:VisualElement style="flex-grow: 1; align-self: center; flex-direction: row; align-items: center; justify-content: center; height: 275px; width: 409px; top: 58px;">
+            <engine:Button text="Restart" name="button-restart" class="button-exit" style="height: 72px; width: 246px;" />
+            <engine:Button text="quit" name="button-quit" class="button-exit" style="height: 75px; width: 260px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

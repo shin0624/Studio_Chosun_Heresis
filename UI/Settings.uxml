@@ -1,0 +1,15 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/styles/close_btn.uss?fileID=7433441132597879392&amp;guid=ee4b84de1e78896489cdd6ba72bc4668&amp;type=3#close_btn" />
+    <engine:VisualElement name="background-settings" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.59); align-items: center;">
+        <engine:VisualElement name="panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: resource(&apos;img_assets/panel2&apos;); width: 80%; height: 80%; position: absolute; top: 123px; left: 202px; align-self: auto; justify-content: flex-start; align-items: stretch; -unity-background-image-tint-color: rgba(0, 0, 0, 0.9);">
+            <engine:Label text="SETTINGS" name="label-settings" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;); font-size: 60px; color: rgb(255, 255, 255); top: -11%; left: 40%; align-items: center; -unity-text-align: upper-center; width: 302px;" />
+            <engine:Button name="button-close" class="close-btn" style="height: 34px; width: 34px; left: 93%; top: -4%;" />
+            <engine:Label text="[ESC]CLOSE" name="label-esc" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;); color: rgb(255, 255, 255); font-size: 20px; height: 39px; width: 126px; top: 67%; left: 88%;" />
+            <engine:Slider label="Mouse Sensitibity" value="42" high-value="100" name="slider-mouse-ssbt" class="settings" />
+            <engine:Slider label="Music Volume" value="42" high-value="100" name="slider-music-v" class="settings" />
+            <engine:Slider label="SFX Volume" value="42" high-value="100" name="slider-sfx-v" class="settings" />
+            <engine:Slider label="Brightness" value="42" high-value="100" name="slider-bghtnss" class="settings" />
+            <engine:DropdownField label="Screen Resolution" name="ddf-scrn" class="settings" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;);" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

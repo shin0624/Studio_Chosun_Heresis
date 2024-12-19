@@ -1,0 +1,49 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/styles/buttons.uss?fileID=7433441132597879392&amp;guid=cb942869901a2914ca515576903fc7b4&amp;type=3#buttons" />
+    <Style src="project://database/Assets/Resources/styles/labels.uss?fileID=7433441132597879392&amp;guid=cce1613cd1f168e4bb2a05f4cf7fa3ef&amp;type=3#labels" />
+    <Style src="project://database/Assets/Resources/styles/credits.uss?fileID=7433441132597879392&amp;guid=aad5a28949438214bb2b75cfbebb37a1&amp;type=3#credits" />
+    <engine:VisualElement name="panel" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Resources/img_asset/horror_sample.png?fileID=21300000&amp;guid=2095de7262499fd44aed16b643a53b08&amp;type=3#horror_sample&quot;); height: 1073px;">
+        <engine:VisualElement name="sidebar" style="flex-grow: 1; height: 1060px; width: 889px; background-image: url(&quot;project://database/Assets/Resources/img_asset/layer.png?fileID=21300000&amp;guid=2782f44a510c2ba48b4425e221773c3b&amp;type=3#layer&quot;); opacity: 1; justify-content: center;">
+            <engine:Label text="HERESIS" name="title" select-word-by-double-click="false" class="labels" style="font-size: 80px; align-items: flex-start; justify-content: flex-start; align-self: auto; position: absolute; top: 231px; left: 99px; overflow: visible;" />
+            <UI.PlainButton.PlainButton text="이어하기" name="button-continue" class="button-main" style="text-overflow: clip; white-space: nowrap;" />
+            <UI.PlainButton.PlainButton enable-rich-text="true" text="새 게임" name="button-new-game" class="button-main" />
+            <UI.PlainButton.PlainButton text="설정" name="button-settings" class="button-main" />
+            <UI.PlainButton.PlainButton text="크레딧" name="button-credits" class="button-main" />
+            <UI.PlainButton.PlainButton text="종료" name="button-exit" class="button-main" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="confirmation-modal" style="flex-grow: 1; position: absolute; top: -3px; left: -1px; bottom: 6px; right: 2px; background-color: rgba(12, 12, 12, 0.95); -unity-background-image-tint-color: rgb(0, 0, 0); justify-content: space-around; align-items: center; font-size: 20px; display: none; -unity-text-align: upper-left; white-space: normal; text-overflow: clip;">
+        <engine:VisualElement name="panel" style="flex-grow: 1; position: absolute; height: 60%; width: 100%; background-color: rgba(255, 255, 255, 0); top: 20%; left: -5px; right: -1px; bottom: 257px; justify-content: flex-start; align-items: center; align-self: auto; background-image: resource(&apos;img_assets/panel&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);">
+            <engine:Label text="EXIT" select-line-by-triple-click="false" selectable="true" emoji-fallback-support="true" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: normal; -unity-font-definition: resource(&apos;font_asset/Coda-Regular&apos;); font-size: 60px; position: absolute; top: 157px;" />
+            <engine:Label text="Are you sure you &#10;want to exit?" style="-unity-text-align: upper-center; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Resources/font_asset/Coda-Regular.ttf?fileID=12800000&amp;guid=8a5f2235ff5f8a74f9cac956d2289fef&amp;type=3#Coda-Regular&quot;); font-size: 30px; -unity-font-style: bold; position: absolute; top: 279px;" />
+            <engine:VisualElement name="footer" style="flex-grow: 1; flex-direction: row; -unity-font-definition: url(&quot;project://database/Assets/Resources/font_asset/Coda-Regular.ttf?fileID=12800000&amp;guid=8a5f2235ff5f8a74f9cac956d2289fef&amp;type=3#Coda-Regular&quot;); color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgba(255, 255, 255, 0); font-size: 23px; height: auto; width: auto; padding-top: 0; align-self: auto; justify-content: space-around; padding-bottom: 0; padding-left: 0; display: flex; position: absolute; top: 396px;">
+                <engine:Button text="cancle" name="button-cancle" class="button-exit" style="height: 100%;" />
+                <engine:Button text="quit" parse-escape-sequences="false" name="button-quit" class="button-exit" style="height: 100%;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="credit-modal" style="position: absolute; width: 100%; height: 100%; background-image: resource(&apos;img_assets/horror_sample&apos;); display: none;">
+        <engine:Label text="HERESIS" name="Label" style="font-size: 150px; -unity-font-definition: resource(&apos;font_asset/decrepit&apos;); color: rgb(95, 21, 21); width: 37%; top: 11%; left: 31%; right: auto; align-items: stretch; height: 13%; position: absolute; -unity-text-align: upper-center;" />
+        <engine:ScrollView name="ScrollView" style="position: absolute; height: 645px; width: 1630px; top: 30%; left: 9%; justify-content: flex-start; background-color: rgba(255, 255, 255, 0.25); right: auto;">
+            <engine:VisualElement name="text1" style="flex-grow: 1; flex-direction: column; justify-content: flex-start; align-self: center;">
+                <engine:VisualElement style="flex-grow: 1;">
+                    <engine:Label text="STUDIO CHOSUN" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;); font-size: 30px; -unity-font-style: bold; color: rgb(140, 37, 37); right: 31px;" />
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <engine:Label text="PROGRAMMER" name="Label" class="text-credits" />
+                    <engine:Label text="신범수 김린아 서강산 이진헌 김동환&#10;&#10;&lt;개발 지원&gt;&#10;조선대학교 LINC3.0사업단&#10;광주글로벌게임센터 &lt;인디스타즈 9기&gt;&#10;광주권 LINC3.0 캡스톤 RISE STAR " name="Label" class="text-credits" style="-unity-text-align: upper-left; height: 237px; width: 231px;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="text2" style="flex-grow: 1; flex-direction: column; justify-content: flex-start; align-self: center;">
+                <engine:VisualElement style="flex-grow: 1;">
+                    <engine:Label text="GRAPHICS" style="-unity-font-definition: resource(&apos;font_assets/Coda-Regular&apos;); font-size: 30px; -unity-font-style: bold; color: rgb(140, 37, 37); -unity-text-align: middle-center;" />
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <engine:Label text="USING ASSETS&#10;COPYLIGHT" name="Label" class="text-credits" />
+                    <engine:Label text="-레벨 디자인-&#10;Hospital Horror Pack - FOEJOFMAY&#10;Modular Horror Hospital Maze - NEO STAR&#10;Abandoned Asylum - LUKAS BOBOR&#10;The Sewer - Veterock&#10;Free Sci-Fi Office Pack - Terresquall&#10;Underground Kit - AP3X Models&#10;병원세트 - HBtoon(ACON 3D)&#10;지하 주차장 - 파르코(ACON 3D)&#10;&#10;-스카이박스-&#10;Free AllSky - RPGWHITELOCK&#10;&#10;-오브젝트-&#10;Electrical shield - FACTORY PROPS&#10;Coffin - Opi-&#10;Rusty Key - Alenksn09&#10;Modular Medieval Lanterns - ALEXANDR VOEVODOV&#10;Animated Loading Icons - Infima Games&#10;&#10;-캐릭터-&#10;BlackDeath2 - Veterock&#10;DeadScene - Veterock&#10;Romero - Mixamo&#10;Leonard - Mixamo&#10;Cursed Priest - Serhat Yucekaya&#10;Doctor01 - sotn1ks&#10;&#10;-사운드-&#10;taira-komori&#10;히타치 소재관&#10;" name="Label" class="text-credits" style="-unity-text-align: upper-left;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:ScrollView>
+        <engine:Button name="button-close" style="background-image: resource(&apos;img_assets/button-X2&apos;); background-color: rgba(188, 188, 188, 0); width: 3%; height: 3%; position: absolute; top: 49px; left: 1827px; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+    </engine:VisualElement>
+</engine:UXML>
