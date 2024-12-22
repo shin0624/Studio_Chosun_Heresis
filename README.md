@@ -45,15 +45,18 @@
 
 # 프로젝트 디테일
 1. **개발환경**
-+ Engine : **Unity Engine 2023.2.16f1**
-+ Graphic : **3ds Max**, **SketchUp**
-+ Language : **C#**
-+ Framework : **.NET Framework 4.7**
++ Engine : ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white)**Unity Engine 2023.2.16f1**
++ Graphic : **3ds Max**, ![Sketch Up](https://img.shields.io/badge/SketchUp-005F9E?style=for-the-badge&logo=sketchup&logoColor=white)
++ Language : ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
++ Framework : **.NET Framework 4.7**![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
 2. 장르
 + 공포, 탈출, 미스터리
 + 3D
 + Single Play
+
+3. 출시 플랫폼
++ ![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white)
 
 [프로젝트 관리](./ProjectManaging)
 
