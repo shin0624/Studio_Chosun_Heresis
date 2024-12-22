@@ -5,7 +5,8 @@
 
 
 # 플레이 영상
-![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=flat&logo=YouTube&logoColor=white)
+![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)  
+
 [![Heresis](https://img.youtube.com/vi/tikQ6RgiCFA/0.jpg)](https://youtu.be/cxzYf7gvMjI)
 
 # 프로젝트 약력
@@ -46,11 +47,11 @@
 
 # 프로젝트 디테일
 1. **개발환경**
-+ **Engine** : ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=flat-square&logo=unity&logoColor=white) **2023.2.16f1**
-+ **Graphic** : ![Sketch Up](https://img.shields.io/badge/SketchUp-005F9E?style=flat-square&logo=sketchup&logoColor=white), <img src="https://img.shields.io/badge/3dsMax-000000?style=flat-square&logo=autodesk&logoColor=white"/>
-+ **Language** : ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=flat-square&logo=csharp&logoColor=white)
-+ **Framework** : ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white) **.NET Framework 4.7**
-+ **VCS** : ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=flat-square&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat-square&logo=github&logoColor=white)
++ **Engine** : ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white) **2023.2.16f1**
++ **Graphic** : ![Sketch Up](https://img.shields.io/badge/SketchUp-005F9E?style=for-the-badge&logo=sketchup&logoColor=white), <img src="https://img.shields.io/badge/3dsMax-000000?style=for-the-badge&logo=autodesk&logoColor=white"/>
++ **Language** : ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
++ **Framework** : ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) **4.7**
++ **VCS** : ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 2. 장르
 + 공포, 탈출, 미스터리
@@ -58,7 +59,7 @@
 + Single Play
 
 3. 출시 플랫폼
-+ ![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=flat-square&logo=steam&logoColor=white)
++ ![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white)
 
 [프로젝트 관리](./ProjectManaging)
 
