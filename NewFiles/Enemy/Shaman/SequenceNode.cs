@@ -7,7 +7,7 @@ public class SequenceNode : BehaviorNode
 
     private int current = 0;
     public override Status Evaluate()//상태 평가
-    {   Debug.Log("Sequence Node!");     
+    {   
         if(current >= children.Count)// current는 자식노드가 모두 성공했을 때 자식 노드 수와 같아짐.
         {
             current = 0;//다시 0으로 초기화
@@ -18,7 +18,7 @@ public class SequenceNode : BehaviorNode
         
         switch(childStatus)
         {
-            case Status.Running : return Status.Running;//실행 중
+            case Status.Running : return Status.Running;//실행 중 --> 12.22 오류 발견 : 계속 Running을 반환하고 있어서 시퀀스 평가가 중단되어버림. --> idleActionNode를 변경
             case Status.Success : current++; return current >=children.Count ? Status.Success : Status.Running;//각 노드가 성공이면 current 증가 후 success 반환, 다음 자식으로 이동
             case Status.Failure : current=0; return Status.Failure;//실패
             default : return Status.Success;// 디폴트 성공 반환

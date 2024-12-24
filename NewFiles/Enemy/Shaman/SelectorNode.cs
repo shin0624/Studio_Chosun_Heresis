@@ -8,7 +8,7 @@ public class SelectorNode : BehaviorNode
     private int current = 0;
     public override Status Evaluate()//구조는 시퀀스 노드와 거의 동일
     {
-        Debug.Log("Selector Node!"); 
+        Debug.Log($"Evaluating child {current} of {children.Count}");
         Status childStatus = children[current].Evaluate();
         switch(childStatus)
         {

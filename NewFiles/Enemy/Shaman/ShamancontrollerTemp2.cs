@@ -8,7 +8,7 @@ public class ShamancontrollerTemp2 : MonoBehaviour
     [SerializeField] private float patrolSpeed = 2.0f; // 탐색 상태 속도
     [SerializeField] private float chaseSpeed = 3.5f; // 추격 상태 속도
     [SerializeField] private Animator anim; // 애니메이터
-    [SerializeField] private const float chaseRange = 7.0f; // 추격 가능 범위
+    [SerializeField] private const float chaseRange = 9.0f; // 추격 가능 범위
     [SerializeField] private const float detectionRange = 11.0f; // 탐지 가능 범위
     [SerializeField] private const float attackRange = 2.5f; // 공격 가능 범위
     [SerializeField] private float rotationSpeed = 5.0f; // 회전 속도
@@ -30,7 +30,7 @@ public class ShamancontrollerTemp2 : MonoBehaviour
     private readonly int chokeTriggerHash = Animator.StringToHash("StartChoke");
     private readonly int roarTriggerHash = Animator.StringToHash("ROAR");
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() // 상호작용 가능 거리를 기즈모로 표현
       {
          // 탐지 거리
          Gizmos.color = Color.green;
@@ -45,10 +45,10 @@ public class ShamancontrollerTemp2 : MonoBehaviour
     {
         ado = GetComponent<AudioSource>();
         target = GameObject.FindWithTag("PLAYER").transform;
-        cameraController = FindAnyObjectByType<CameraController>();
+        cameraController = FindAnyObjectByType<CameraController>(); // ROAR 시 카메라 쉐이크를 위해 카메라컴포넌트 할당
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        currentState = Define.ShamanState.IDLE;
+        currentState = Define.ShamanState.IDLE; // 첫 상태는 IDLE
         SetState(currentState);
         agent.stoppingDistance = attackRange;
         agent.speed = patrolSpeed;
@@ -59,21 +59,21 @@ public class ShamancontrollerTemp2 : MonoBehaviour
 
     void Update()
     {
-        if (target != null && currentState != Define.ShamanState.ATTACK)
+        if (target != null && currentState != Define.ShamanState.ATTACK) // ATTACK일 때 : 목적지를 플레이어로 설정
         {
             agent.SetDestination(target.position);
         }
 
-        if (agent.velocity.sqrMagnitude > 0.1f)
+        if (agent.velocity.sqrMagnitude > 0.1f) // 이동 시작 시
         {
             Vector3 direction = agent.velocity.normalized;
             if (direction != Vector3.zero)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+                Quaternion targetRotation = Quaternion.LookRotation(direction); // 에너미가 플레이어를 바라보도록 한다.
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed); // 부드럽게 회전하며 플레이어를 바라볼 수 있도록
             }
         }
-        else if (target != null && currentState != Define.ShamanState.IDLE)
+        else if (target != null && currentState != Define.ShamanState.IDLE) // IDLE일 경우
         {
             Vector3 directionToTarget = (target.position - transform.position).normalized;
             if (directionToTarget != Vector3.zero)
@@ -84,7 +84,7 @@ public class ShamancontrollerTemp2 : MonoBehaviour
         }
     }
 
-    private void SetState(Define.ShamanState newState)
+    private void SetState(Define.ShamanState newState) // 에너미 상태 변화 호출 메서드
     {
         if (currentState != newState)
         {
@@ -93,7 +93,7 @@ public class ShamancontrollerTemp2 : MonoBehaviour
         }
     }
 
-    private IEnumerator FSM()
+    private IEnumerator FSM() // 유한상태기계 코루틴을 SWITCH로 작성
     {
         while (true)
         {
@@ -119,7 +119,7 @@ public class ShamancontrollerTemp2 : MonoBehaviour
         }
     }
 
-    private IEnumerator IDLE()
+    private IEnumerator IDLE() // IDLE상태. 플레이어가 사정거리 내에 들어오면 ROAR 애니메이션으로 전환된다.
     {
         anim.SetBool(isRunningHash, false);
         yield return new WaitForSeconds(1.0f);
@@ -133,7 +133,7 @@ public class ShamancontrollerTemp2 : MonoBehaviour
         }
     }
 
-    private IEnumerator RUNNING()
+    private IEnumerator RUNNING() // RUNNING 상태. ROAR가 끝나면 플레이어를 추격
     {
         anim.SetBool(isRunningHash, true);
         agent.speed = chaseSpeed;
@@ -145,26 +145,26 @@ public class ShamancontrollerTemp2 : MonoBehaviour
 
             if (distanceToPlayer <= attackRange)
             {
-                SetState(Random.Range(0f, 1f) < 0.3f ? Define.ShamanState.CHOKE : Define.ShamanState.ATTACK);
+                SetState(Random.Range(0f, 1f) < 0.3f ? Define.ShamanState.CHOKE : Define.ShamanState.ATTACK);// 랜덤값을 매겨서 CHOKE를 실행할 지, ATTACK을 실행할 지 결정하여 전환
             }
             else if (distanceToPlayer > chaseRange)
             {
-                SetState(Define.ShamanState.IDLE);
+                SetState(Define.ShamanState.IDLE);// 멀어지면 다시 IDLE
             }
         }
         yield return new WaitForSeconds(0.1f);
     }
 
-    private IEnumerator ATTACK()
+    private IEnumerator ATTACK()// ATTACK 상태. 공격 중에는 이동을 정지하고 때린다.
     {
         anim.SetTrigger(attackTriggerHash);
         agent.speed = 0; // 공격 중 정지
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
-        SetState(Define.ShamanState.RUNNING);
+        SetState(Define.ShamanState.RUNNING);// 공격 후 RUNNING으로 전환하여 쫒아감
     }
 
-    private IEnumerator CHOKE()
+    private IEnumerator CHOKE()// CHOKE 상태. 일정 확률로 CHOKE가 되면 플레이어를 들어올려 목을 조르고 다시 팽개친다. 정신력-2 감소
     {
         anim.SetTrigger(chokeTriggerHash);
         agent.speed = 0;
@@ -173,10 +173,10 @@ public class ShamancontrollerTemp2 : MonoBehaviour
         SetState(Define.ShamanState.RUNNING);
     }
 
-    private IEnumerator ROAR()
+    private IEnumerator ROAR()// 포효 상태. 플레이어를 발견하면 포효 후 쫒아간다.
     {
         anim.SetTrigger(roarTriggerHash); // 애니메이션 트리거
-    PlayRoarEffects(); // 이펙트 실행
+    PlayRoarEffects(); // 이펙트 실행. 포효소리가 들리면 카메라 쉐이크가 발동하여 좀 더 실감나는 느낌을 더함
 
     if (!hasRoared)
     {
