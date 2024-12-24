@@ -45,22 +45,22 @@ public class SanityManager : MonoBehaviour
     void Update()
     {
         // Q 키를 눌러서 테스트용으로 정신력 감소
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            DecreaseSanity();
-        }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     DecreaseSanity();
+        // }
 
-        // R 키를 눌러서 테스트용으로 정신력 회복
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestoreSanity();
-        }
+        // // R 키를 눌러서 테스트용으로 정신력 회복
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     RestoreSanity();
+        // }
 
-        // M 키를 눌러서 테스트용으로 회복약 획득
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            AddMedicine();
-        }
+        // // M 키를 눌러서 테스트용으로 회복약 획득
+        // if (Input.GetKeyDown(KeyCode.M))
+        // {
+        //     AddMedicine();
+        // }
 
         // 빌드 시에는 테스트용 키를 제거
     }

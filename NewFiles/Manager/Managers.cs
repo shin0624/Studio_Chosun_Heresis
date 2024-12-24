@@ -14,12 +14,6 @@ public class Managers : MonoBehaviour
     public SceneChangeManager sceneChangeManager = new SceneChangeManager();//씬체인지 매니저 인스턴스 선언
     public static SceneChangeManager SceneChange { get { return instance.sceneChangeManager; } }
 
-
-    [SerializeField]
-    private int PlayerMentalPower;//플레이어 정신력
-    [SerializeField]
-    private float PlayerFlashIntensity;//손전등 밝기
-
     private void Awake()// Awake는 Unity에서 객체가 생성될 때 가장 먼저 호출되므로, Mangers객체가 중복 생성되지 않게 하기 위함
     {
         //만약 awake가 호출되었을 때 다른 Managers인스턴스가 존재하면 새로 생성된 객체를 제거

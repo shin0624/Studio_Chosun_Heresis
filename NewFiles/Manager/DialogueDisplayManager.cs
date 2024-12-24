@@ -105,5 +105,22 @@ public class DialogueDisplayManager : DialogController
     {
         DisplayDialogueOnce("11113");
     }
+    public void ShamanRoarDialogue()
+    {
+        DisplayDialogueOnce("11116");
+    }
+    public void ShamanRunDialogue()
+    {
+        DisplayDialogueOnce("11117");
+    }
+    public void DoctorRunDialogue()
+    {
+        DisplayDialogueOnce("11118");
+    }
+    public void EventPhonCalling()
+    {
+        DisplayDialogueOnce("11119");
+    }
+
 
 }

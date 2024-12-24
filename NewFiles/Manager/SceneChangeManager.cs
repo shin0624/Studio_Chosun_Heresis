@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class SceneChangeManager : MonoBehaviour
     
     private Vector3 UnderFloorPlayer = new Vector3(0.4f, 0.7f, 0.4f);
     private Vector3 Under3FPlayer = new Vector3(1.0f, 1.6f, 0.9f);
+    //private quaternion Under3FPlayerRotation = Quaternion.Euler(-90.0f,0f,90f );
     public static int SceneCount = 0;
     public int GetCount {get {return SceneCount;}}
     private void Awake()
@@ -66,6 +68,7 @@ public class SceneChangeManager : MonoBehaviour
         if(sp != null)
         {
             player.transform.position = sp.transform.position;
+            //player.transform.rotation = Under3FPlayerRotation;
             player.transform.rotation = sp.transform.rotation;
             player.transform.localScale = Under3FPlayer;
             Debug.Log($"Spawn Point : {sp.name}");
