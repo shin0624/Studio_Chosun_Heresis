@@ -1,5 +1,5 @@
 ![포스터완성본](https://github.com/user-attachments/assets/a22ffe2b-74d5-40ad-a257-a0f2663d7e91)   
-![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white)[Steam에서 다운로드](https://store.steampowered.com/app/3374270/HERESIS/).
+[Steam에서 다운로드](https://store.steampowered.com/app/3374270/HERESIS/).   
 # HERESIS
     한국의 무속신앙적 요소를 넣은 공포게임이 있다면 재미있을 것 같다는 생각을 시작으로 개발이 시작되었습니다.
 
