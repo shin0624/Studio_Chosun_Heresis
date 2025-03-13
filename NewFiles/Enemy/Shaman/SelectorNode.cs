@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SelectorNode : BehaviorNode //Selector노드 : 성공할 때 까지 자식 노드를 순차적으로 시도한다. or게이트와 동일
 {
-    //여러 노드 중 하나만 수행해야 하는 특성을 가짐.
     private int current = 0;
-    
     public override Status Evaluate()//구조는 시퀀스 노드와 거의 동일
     {
         //Debug.Log($"Evaluating child {current} of {children.Count}");
@@ -33,7 +31,6 @@ public class SelectorNode : BehaviorNode //Selector노드 : 성공할 때 까지
             default :
                 return Status.Success;
         }
-
     }
-    }
+}
 
