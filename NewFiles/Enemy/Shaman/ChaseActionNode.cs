@@ -11,6 +11,7 @@ public class ChaseActionNode : BehaviorNode
     private bool hasRoared = false;// 포효 상태 추적을 위한 플래그
     private float roarTimer = 0.0f;
     private float roarDuration = 2.8f;//ROAR 클립 재생시간
+    
     public ChaseActionNode(ShamanController shaman)
     {
         this.shaman = shaman;
@@ -20,7 +21,7 @@ public class ChaseActionNode : BehaviorNode
     {
         //플레이어와의 거리 확인
         float distanceToPlayer = Vector3.Distance(shaman.transform.position, shaman.player.position);
-
+        
         //플레이어 감지 시 최초 한 번만 ROAR 재생
         if(!hasRoared)
         {
@@ -54,12 +55,11 @@ public class ChaseActionNode : BehaviorNode
 
         //플레이어 추적
         shaman.agent.SetDestination(shaman.player.position);
-
         
-
         //추적 애니메이션 클립 재생
         shaman.animator.SetBool("IsRunnig", true);
         shaman.agent.speed = 3.0f;
+        
         //공격 범위에 들어오면 성공
         if(distanceToPlayer <= shaman.attackRange)
         {
@@ -68,7 +68,7 @@ public class ChaseActionNode : BehaviorNode
             return Status.Success;//다음 노드로 전환.
         }
 
-        return Status.Running;//계속 추적하는 중
+        return Status.Running;//계속 추적하는 중임을 반환.
     }
 
 }
