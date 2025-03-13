@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SequenceNode : BehaviorNode
-{// 시퀀스노드 : 모든 자식 노드들을 순차적으로 실행. and게이트와 동일(모든 자식노드 성공 시 전체 성공, 하나라도 실패면 전체 실패)
-
+public class SequenceNode : BehaviorNode // 시퀀스노드 : 모든 자식 노드들을 순차적으로 실행. and게이트와 동일(모든 자식노드 성공 시 전체 성공, 하나라도 실패면 전체 실패)
+{
     private int current = 0;
     public override Status Evaluate()//상태 평가
     {   
