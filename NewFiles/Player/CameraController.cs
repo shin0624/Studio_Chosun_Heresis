@@ -3,30 +3,30 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;  // ÇÃ·¹ÀÌ¾îÀÇ Transform
-    public Camera cam;        // Ä«¸Ş¶ó
-    public float mouseSpeed = 100f; // ¸¶¿ì½º ÀÌµ¿ ¼Óµµ
-    public float rotationSmoothTime = 0.1f; // È¸Àü ºÎµå·¯¿ò Á¶Á¤ ½Ã°£
+    public Transform player;  // í”Œë ˆì´ì–´ì˜ Transform
+    public Camera cam;        // ì¹´ë©”ë¼
+    public float mouseSpeed = 100f; // ë§ˆìš°ìŠ¤ ì´ë™ ì†ë„
+    public float rotationSmoothTime = 0.1f; // íšŒì „ ë¶€ë“œëŸ¬ì›€ ì¡°ì • ì‹œê°„
 
-    private float xRotation = 0f;  // Ä«¸Ş¶óÀÇ ¼öÁ÷ È¸Àü °¢µµ
-    private float yRotation = 0f;  // Ä«¸Ş¶óÀÇ ¼öÆò È¸Àü °¢µµ
-    private float currentXRotation = 0f; // ÇöÀç Ä«¸Ş¶óÀÇ ¼öÁ÷ È¸Àü °ª
-    private float currentYRotation = 0f; // ÇöÀç Ä«¸Ş¶óÀÇ ¼öÆò È¸Àü °ª
-    private float xRotationVelocity = 0f; // ¼öÁ÷ È¸Àü °ª º¯È­ ¼Óµµ
-    private float yRotationVelocity = 0f; // ¼öÆò È¸Àü °ª º¯È­ ¼Óµµ
+    private float xRotation = 0f;  // ì¹´ë©”ë¼ì˜ ìˆ˜ì§ íšŒì „ ê°ë„
+    private float yRotation = 0f;  // ì¹´ë©”ë¼ì˜ ìˆ˜í‰ íšŒì „ ê°ë„
+    private float currentXRotation = 0f; // í˜„ì¬ ì¹´ë©”ë¼ì˜ ìˆ˜ì§ íšŒì „ ê°’
+    private float currentYRotation = 0f; // í˜„ì¬ ì¹´ë©”ë¼ì˜ ìˆ˜í‰ íšŒì „ ê°’
+    private float xRotationVelocity = 0f; // ìˆ˜ì§ íšŒì „ ê°’ ë³€í™” ì†ë„
+    private float yRotationVelocity = 0f; // ìˆ˜í‰ íšŒì „ ê°’ ë³€í™” ì†ë„
 
-    //--------°ø°İ¹ŞÀ¸¸é Ä«¸Ş¶ó°¡ Èçµé¸®´Â ±â´É °ü·Ã ÄÚµå---------------
-    private float shakeDuration = 0.5f;//Èçµé¸² Áö¼Ó½Ã°£
-    private float shakeAmount = 0.7f;//Èçµé¸² °­µµ
+    //--------ê³µê²©ë°›ìœ¼ë©´ ì¹´ë©”ë¼ê°€ í”ë“¤ë¦¬ëŠ” ê¸°ëŠ¥ ê´€ë ¨ ì½”ë“œ---------------
+    private float shakeDuration = 0.5f;//í”ë“¤ë¦¼ ì§€ì†ì‹œê°„
+    private float shakeAmount = 0.7f;//í”ë“¤ë¦¼ ê°•ë„
     private Vector3 originalPos;
-    private float noiseOffsetX;//ÆŞ¸°³ëÀÌÁî¿ë º¯¼ö Ãß°¡-->¿¬¼ÓÀûÀÎ ³­¼ö¸¦ »ı¼ºÇÏ´Â ÆŞ¸°³ëÀÌÁî¸¦ »ç¿ëÇÏ¿© ÄÚ·çÆ¾ ³»¿¡¼­ÀÇ Random.Range »ç¿ëº¸´Ù ÀÚ¿¬½º·¯¿î Èçµé¸² À¯µµ °¡´É
+    private float noiseOffsetX;//í„ë¦°ë…¸ì´ì¦ˆìš© ë³€ìˆ˜ ì¶”ê°€-->ì—°ì†ì ì¸ ë‚œìˆ˜ë¥¼ ìƒì„±í•˜ëŠ” í„ë¦°ë…¸ì´ì¦ˆë¥¼ ì‚¬ìš©í•˜ì—¬ ì½”ë£¨í‹´ ë‚´ì—ì„œì˜ Random.Range ì‚¬ìš©ë³´ë‹¤ ìì—°ìŠ¤ëŸ¬ìš´ í”ë“¤ë¦¼ ìœ ë„ ê°€ëŠ¥
     private float noiseOffsetY;
     void Start()
     {
-        cam.transform.localPosition = new Vector3(0, 0.5f, -0.1f); // Ä«¸Ş¶ó¸¦ ÇÃ·¹ÀÌ¾î µÚ·Î ÀÌµ¿
-        cam.transform.localRotation = Quaternion.identity; // Ä«¸Ş¶óÀÇ È¸ÀüÀ» ÃÊ±âÈ­
-        originalPos = cam.transform.localPosition;//Ä«¸Ş¶ó ÇöÀç À§Ä¡
-        //ÆŞ¸°³ëÀÌÁî Àû¿ëÀ» À§ÇØ ·£´ıÇÑ ½ÃÀÛÁ¡À» ¼³Á¤
+        cam.transform.localPosition = new Vector3(0, 0.5f, -0.1f); // ì¹´ë©”ë¼ë¥¼ í”Œë ˆì´ì–´ ë’¤ë¡œ ì´ë™
+        cam.transform.localRotation = Quaternion.identity; // ì¹´ë©”ë¼ì˜ íšŒì „ì„ ì´ˆê¸°í™”
+        originalPos = cam.transform.localPosition;//ì¹´ë©”ë¼ í˜„ì¬ ìœ„ì¹˜
+        //í„ë¦°ë…¸ì´ì¦ˆ ì ìš©ì„ ìœ„í•´ ëœë¤í•œ ì‹œì‘ì ì„ ì„¤ì •
         noiseOffsetX = Random.Range(0f, 1000f);
         noiseOffsetY = Random.Range(0f,1000f);
     }
@@ -41,23 +41,26 @@ public class CameraController : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSpeed * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSpeed * Time.deltaTime;
 
-        // ¸ñÇ¥ È¸Àü °ª °è»ê
+        // ëª©í‘œ íšŒì „ ê°’ ê³„ì‚°
         yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // ¼öÁ÷ È¸Àü °ªÀ» -90µµ¿¡¼­ 90µµ »çÀÌ·Î Á¦ÇÑ
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // ìˆ˜ì§ íšŒì „ ê°’ì„ -90ë„ì—ì„œ 90ë„ ì‚¬ì´ë¡œ ì œí•œ
 
-        // ÇöÀç È¸Àü °ªÀ» ¸ñÇ¥ È¸Àü °ªÀ¸·Î ºÎµå·´°Ô ÀÌµ¿
+        // í˜„ì¬ íšŒì „ ê°’ì„ ëª©í‘œ íšŒì „ ê°’ìœ¼ë¡œ ë¶€ë“œëŸ½ê²Œ ì´ë™
         currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationVelocity, rotationSmoothTime);
         currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationVelocity, rotationSmoothTime);
 
-        // Ä«¸Ş¶óÀÇ È¸Àü Àû¿ë
+        // ì¹´ë©”ë¼ì˜ íšŒì „ ì ìš©
         cam.transform.localRotation = Quaternion.Euler(currentXRotation, 0, 0);
-        player.transform.rotation = Quaternion.Euler(0, currentYRotation, 0); // ÇÃ·¹ÀÌ¾î È¸Àü Á¶Àı
+        player.transform.rotation = Quaternion.Euler(0, currentYRotation, 0); // í”Œë ˆì´ì–´ íšŒì „ ì¡°ì ˆ
     }
 
-    public void StartShake()// °ø°İÀ» ¹ŞÀ¸¸é Ä«¸Ş¶ó Èçµé¸²À» ½ÃÀÛ. DecreaseSanity()°¡ È£ÃâµÉ ¶§ È£Ãâ.
+    public void StartShake()// ê³µê²©ì„ ë°›ìœ¼ë©´ ì¹´ë©”ë¼ í”ë“¤ë¦¼ì„ ì‹œì‘. DecreaseSanity()ê°€ í˜¸ì¶œë  ë•Œ í˜¸ì¶œ.   
     {
-        StopAllCoroutines();//ÀÌÀü Èçµé¸²ÀÌ ÀÖ´Ù¸é ÁßÁöÇÔ.
+        ShakeCoroutine prevCoroutine = ShakeCoroutine();
+
+        StopCoroutine(prevCoroutine);//ì´ì „ í”ë“¤ë¦¼ì´ ìˆë‹¤ë©´ ì¤‘ì§€í•¨.
+
         StartCoroutine(ShakeCoroutine());
     }
 
@@ -67,20 +70,20 @@ public class CameraController : MonoBehaviour
         while(elapsed < shakeDuration)
         {
             elapsed+=Time.deltaTime;
-            float percentComplete = elapsed / shakeDuration;//Èçµé¸²ÀÌ ¿Ï·áµÇ´Â ½Ã°£
-            float damper = 1.0f - Mathf.Clamp(percentComplete, 0.0f, 1.0f);//½Ã°£ÀÌ Áö³¯ ¼ö·Ï Èçµé¸²ÀÌ ÀÚ¿¬½º·´°Ô °¨¼ÒÇÏµµ·Ï ÇÑ´Ù.
+            float percentComplete = elapsed / shakeDuration;//í”ë“¤ë¦¼ì´ ì™„ë£Œë˜ëŠ” ì‹œê°„
+            float damper = 1.0f - Mathf.Clamp(percentComplete, 0.0f, 1.0f);//ì‹œê°„ì´ ì§€ë‚  ìˆ˜ë¡ í”ë“¤ë¦¼ì´ ìì—°ìŠ¤ëŸ½ê²Œ ê°ì†Œí•˜ë„ë¡ í•œë‹¤.
             
-            //ÆŞ¸° ³ëÀÌÁî¸¦ »ç¿ëÇÑ Èçµé¸² Àû¿ë. elapsed*10À» »ç¿ëÇÏ¿© ³ëÀÌÁîÀÇ ¼Óµµ¸¦ Á¶ÀıÇÑ´Ù. ÀÌ °ªÀ» ³ô¿©¼­ ´õ ºü¸¥ Èçµé¸²À» ¿¬ÃâÇÒ ¼ö ÀÖÀ»µí.
+            //í„ë¦° ë…¸ì´ì¦ˆë¥¼ ì‚¬ìš©í•œ í”ë“¤ë¦¼ ì ìš©. elapsed*10ì„ ì‚¬ìš©í•˜ì—¬ ë…¸ì´ì¦ˆì˜ ì†ë„ë¥¼ ì¡°ì ˆí•œë‹¤. ì´ ê°’ì„ ë†’ì—¬ì„œ ë” ë¹ ë¥¸ í”ë“¤ë¦¼ì„ ì—°ì¶œí•  ìˆ˜ ìˆì„ë“¯.
             float offsetX = Mathf.PerlinNoise(noiseOffsetX + elapsed*10f, 0f );
             float offsetY = Mathf.PerlinNoise(0f, noiseOffsetY + elapsed * 10f);
 
-            //1-¿¡¼­ 1 »çÀÌÀÇ °ªÀ¸·Î º¯È¯
+            //1-ì—ì„œ 1 ì‚¬ì´ì˜ ê°’ìœ¼ë¡œ ë³€í™˜
             offsetX = (offsetX * 2.0f - 1.0f) * shakeAmount * damper;
             offsetY = (offsetY * 2.0f - 1.0f) * shakeAmount * damper;
-            cam.transform.localPosition = originalPos + new Vector3(offsetX, offsetY, 0);//Èçµé¸° À§Ä¡¸¦ Ä«¸Ş¶ó ·ÎÄÃÆ÷Áö¼Ç¿¡ Àû¿ë
+            cam.transform.localPosition = originalPos + new Vector3(offsetX, offsetY, 0);//í”ë“¤ë¦° ìœ„ì¹˜ë¥¼ ì¹´ë©”ë¼ ë¡œì»¬í¬ì§€ì…˜ì— ì ìš©
             
             yield return null;
         }
-        cam.transform.localPosition = originalPos;//Ä«¸Ş¶ó ¿ø·¡ À§Ä¡·Î ÀÌµ¿.
+        cam.transform.localPosition = originalPos;//ì¹´ë©”ë¼ ì›ë˜ ìœ„ì¹˜ë¡œ ì´ë™.
     }
 }
