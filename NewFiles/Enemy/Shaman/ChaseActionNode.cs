@@ -37,24 +37,34 @@ public class ChaseActionNode : BehaviorNode
             if(roarTimer < roarDuration){return Status.Running;}//지속시간 체크
         }
 
-        //너무 멀어지면 리스폰 또는 실패.
-        if(distanceToPlayer > respawnDistance)
+        if (distanceToPlayer > respawnDistance)//너무 멀어지면 리스폰되거나, 그 자리에서 IDLE상태가 된다.
         {
-            //Navmesh위의 새로운 위치로 이동.
+            int maxAttempts = 10;//랜덤 위치를 찾기 위한 시도 횟수에 제한을 둔다.
+            int attempts = 0;
             NavMeshHit hit;
-            Vector3 randomDirection = Random.insideUnitSphere * respawnDistance;//네비메시 위의 원형 랜덤 구간 * 거리
-            randomDirection+=shaman.player.position;
-
-            if(NavMesh.SamplePosition(randomDirection, out hit, respawnDistance, NavMesh.AllAreas))//위치가 존재한다면
+        
+            while (attempts < maxAttempts)//시도 제한 횟수까지 반복하며 리스폰 가능 위치를 찾는다.
             {
-                shaman.agent.SetDestination(hit.position);
-                hasRoared = false; // 포효 상태 초기화
-                return Status.Failure;
+                Vector3 randomDirection = Random.insideUnitSphere * respawnDistance;
+                randomDirection += shaman.player.position;
+                
+                //SamplePosition 메서드를 사용하여 최대 respawnDistance 까지 탐색하며 랜덤 위치를 찾는다.
+                if (NavMesh.SamplePosition(randomDirection, out hit, respawnDistance, NavMesh.AllAreas))
+                {
+                    shaman.transform.position = hit.position;//에너미 위치를 랜덤 위치로 리스폰.
+                    shaman.agent.ResetPath(); // 기존 경로 초기화
+                    hasRoared = false; // 포효 상태 초기화
+                    return Status.Success; // 리스폰 후 Idle 상태로 전환
+                }
+        
+                attempts++;
             }
+        
+            shaman.agent.ResetPath(); // 이동 중지
+            hasRoared = false; // 포효 상태 초기화
+            return Status.Success; // 유효한 위치를 찾지 못한 경우, 현재 위치에서 Idle 상태 유지
         }
-
-        //플레이어 추적
-        shaman.agent.SetDestination(shaman.player.position);
+        shaman.agent.SetDestination(shaman.player.position); //플레이어 추적
         
         //추적 애니메이션 클립 재생
         shaman.animator.SetBool("IsRunnig", true);
